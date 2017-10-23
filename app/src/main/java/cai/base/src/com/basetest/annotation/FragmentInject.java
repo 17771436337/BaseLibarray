@@ -4,6 +4,7 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import cai.base.src.com.basetest.enums.FragmentTypeEnum;
 
 /**
  * Created by Administrator on 2017/10/23.
@@ -24,4 +25,11 @@ public @interface FragmentInject{
      * @return
      */
     boolean isLoading() default false;
+
+    /**
+     * 判断Activity的类别
+     * @return
+     */
+    FragmentTypeEnum fragmentType() default FragmentTypeEnum.BaseFragment;
+
 }

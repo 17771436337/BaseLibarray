@@ -19,11 +19,11 @@ import java.lang.reflect.Method;
 import cai.base.src.com.basetest.R;
 import cai.base.src.com.basetest.annotation.ActivityInject;
 import cai.base.src.com.basetest.annotation.FindById;
+import cai.base.src.com.basetest.enums.ActivityTypeEnum;
 
 /**
  * Created by Administrator on 2017/9/25.
  */
-
 public abstract class BaseActivity extends AppCompatActivity{
 
 
@@ -41,11 +41,15 @@ public abstract class BaseActivity extends AppCompatActivity{
     /** 是否添加加载弹框*/
     private boolean isLoading ;
 
+    /**
+     * Activity类别
+     */
+    ActivityTypeEnum activityType;
+
 
 
 
     //-------------------------------------------------------------------周期相关代码----------------------------------------------------------------
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,6 +62,15 @@ public abstract class BaseActivity extends AppCompatActivity{
         showLoading();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
 
     @Override
     public void finish() {
@@ -88,6 +101,17 @@ public abstract class BaseActivity extends AppCompatActivity{
     protected abstract void onBackClick();
 
 
+    /**判断不同类别，执行不同的逻辑方法*/
+    private void isActivityType(){
+        switch (activityType){
+            case HomeActivity:
+                break;
+            case BaseActivity:
+                break;
+            default:
+                break;
+        }
+    }
 
 
 
@@ -187,8 +211,6 @@ public abstract class BaseActivity extends AppCompatActivity{
 
 
 
-
-
     //-------------------------------------------------------------------反射逻辑处理代码----------------------------------------------------------------
 
     /**注解内容获取*/
@@ -198,6 +220,8 @@ public abstract class BaseActivity extends AppCompatActivity{
             ActivityInject annotation = getClass().getAnnotation(ActivityInject.class);
             //获取到对应的布局文件id
             contentViewId = annotation.contentViewId();
+            //获取到对应的Activity的类别
+            activityType = annotation.activityType();
             //获取到设置的对应的日志输出标志
             TAG = annotation.getTag();
             //获取到设对应的显示标题

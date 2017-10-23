@@ -9,11 +9,13 @@ import android.widget.Toast;
 
 import cai.base.src.com.basetest.annotation.ActivityInject;
 import cai.base.src.com.basetest.base.BaseActivity;
+import cai.base.src.com.basetest.enums.ActivityTypeEnum;
 
 
 @ActivityInject(contentViewId = R.layout.activity_main,
         isTable = true,
-        tableName = "测试")
+        tableName = "测试",
+activityType = ActivityTypeEnum.BaseActivity)
 public class MainActivity extends BaseActivity {
 
     FrameLayout content;

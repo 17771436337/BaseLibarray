@@ -5,6 +5,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+import cai.base.src.com.basetest.enums.ActivityTypeEnum;
+
 /**
  * Activit初始化的用到的注解
  */
@@ -68,6 +70,12 @@ public @interface ActivityInject {
      * @return
      */
     boolean isLoading() default false;
+
+    /**
+     * 判断Activity的类别
+     * @return
+     */
+    ActivityTypeEnum  activityType() default ActivityTypeEnum.BaseActivity;
 
 
 
