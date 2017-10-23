@@ -1,29 +1,23 @@
 package cai.base.src.com.basetest.base;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Layout;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
+import android.widget.Toast;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import cai.base.src.com.basetest.R;
-import cai.base.src.com.basetest.annotation.ActivityFragmentInject;
+import cai.base.src.com.basetest.annotation.ActivityInject;
 import cai.base.src.com.basetest.annotation.FindById;
 
 /**
@@ -61,12 +55,14 @@ public abstract class BaseActivity extends AppCompatActivity{
         setTableView();
         inject(this);
         initData();
+        showLoading();
     }
 
 
     @Override
     public void finish() {
         super.finish();
+        overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
     }
 
 
@@ -77,7 +73,7 @@ public abstract class BaseActivity extends AppCompatActivity{
      */
     protected void showLoading(){
         if (isLoading){//数据加载Load显示
-
+            Toast.makeText(this,"测试",Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -90,6 +86,9 @@ public abstract class BaseActivity extends AppCompatActivity{
      * 返回键监听事件
      */
     protected abstract void onBackClick();
+
+
+
 
 
     /**
@@ -129,13 +128,74 @@ public abstract class BaseActivity extends AppCompatActivity{
     }
 
 
+    //-----------------------跳转方法---------------------
+
+
+    /**
+     * 设置意图
+     */
+    public void startActivity(Intent intent) {
+       super.startActivity(intent);
+        overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
+    }
+
+    /**
+     * Activity设置意图转 ,可返回
+     */
+    public void startActivityForResult(Intent intent, int requestCode) {
+       super.startActivityForResult(intent, requestCode);
+        overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
+    }
+
+
+    /**
+     * Activity不带参数得页面跳转
+     */
+    protected  void startActivity(Class activity) {
+        Intent it = new Intent(this, activity);
+        it.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(it);
+    }
+
+
+    /**
+     * Activity携带参数得页面跳转
+     */
+    protected  void startActivity(Class activity, Intent bundle) {
+        Intent it = new Intent(this, activity);
+        it.putExtras(bundle);
+        it.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(it);
+    }
+
+    /**
+     * Activity不带参数得页面跳转 ,可返回
+     */
+    protected void startActivityForResult(Class activity, int requestCode) {
+        Intent it = new Intent(this, activity);
+        startActivityForResult(it, requestCode);
+    }
+
+    /**
+     * Activity携带参数得页面跳转  ,可返回
+     */
+    protected void startActivityForResult( Class activity, Bundle bundle, int requestCode) {
+        Intent it = new Intent(this, activity);
+        it.putExtras(bundle);
+        startActivityForResult(it, requestCode);
+    }
+
+
+
+
+
     //-------------------------------------------------------------------反射逻辑处理代码----------------------------------------------------------------
 
     /**注解内容获取*/
     private void getAnnotation(){
-        if (getClass().isAnnotationPresent(ActivityFragmentInject.class)){//判断是否为当前的注解方式
+        if (getClass().isAnnotationPresent(ActivityInject.class)){//判断是否为当前的注解方式
             //获取到注解类的实例化对象
-            ActivityFragmentInject annotation = getClass().getAnnotation(ActivityFragmentInject.class);
+            ActivityInject annotation = getClass().getAnnotation(ActivityInject.class);
             //获取到对应的布局文件id
             contentViewId = annotation.contentViewId();
             //获取到设置的对应的日志输出标志

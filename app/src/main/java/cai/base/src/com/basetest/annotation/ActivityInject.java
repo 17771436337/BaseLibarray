@@ -6,7 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Activit与Fragment初始化的用到的注解
+ * Activit初始化的用到的注解
  */
 
 /**
@@ -30,7 +30,7 @@ ElemenetType.TYPE          　　　　  类，接口（包括注解类型）或
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})
-public @interface ActivityFragmentInject {
+public @interface ActivityInject {
     /**
      * 中间布局
      *
