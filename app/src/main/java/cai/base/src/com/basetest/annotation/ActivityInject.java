@@ -39,24 +39,6 @@ public @interface ActivityInject {
      */
     int contentViewId() default -1;
 
-    /**
-     * 是否显示标题
-     * @return
-     */
-    boolean isTable() default false;
-
-    /**
-     * 设置标题名字
-     * @return
-     */
-    String tableName() default "";
-
-    /***
-     * 返回键是否显示
-     * @return
-     */
-    boolean isBackShow() default true;
-
     /***
      * 是否添加加载图标
      * @return

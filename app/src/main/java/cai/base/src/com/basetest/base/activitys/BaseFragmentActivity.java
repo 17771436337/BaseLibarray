@@ -10,12 +10,6 @@ import cai.base.src.com.basetest.enums.ActivityTypeEnum;
 
 public abstract class BaseFragmentActivity extends BasicsActivity {
 
-
-    @Override
-    protected void onBackClick() {
-
-    }
-
     @Override
     protected void onFragmentActivity(Bundle savedInstanceState) {
 

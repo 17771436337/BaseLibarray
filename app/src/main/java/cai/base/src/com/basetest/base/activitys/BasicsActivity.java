@@ -31,10 +31,7 @@ public abstract class BasicsActivity extends AppCompatActivity{
     /** 是否显示标题 */
     private boolean isTable = false;
 
-    /** 标题名字*/
-    private String titleName;
 
-    private boolean isTitleBack;
     /** 是否添加加载弹框*/
     private boolean isLoading ;
 
@@ -46,8 +43,8 @@ public abstract class BasicsActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         getAnnotation();
         isActivityType(savedInstanceState);
-        setTableView();
-//        inject(this);
+//
+        inject(this);
         initData();
         showLoading();
     }
@@ -85,10 +82,7 @@ public abstract class BasicsActivity extends AppCompatActivity{
      */
     protected abstract void initData();
 
-    /**
-     * 返回键监听事件
-     */
-    protected abstract void onBackClick();
+
 
     /**
      * 获取Activity类别
@@ -137,42 +131,6 @@ public abstract class BasicsActivity extends AppCompatActivity{
     }
 
 
-
-    /**
-     * 初始化视图，并且添加对应的标题
-     * @return
-     */
-    private void setTableView(){
-        View tableView = findViewById(R.id.activity_base_title);
-        ImageView back = tableView.findViewById(R.id.table_back);
-        TextView name = tableView.findViewById(R.id.table_name);
-
-        FrameLayout content = (FrameLayout)findViewById(R.id.activity_base_content);
-        content.addView(LayoutInflater.from(this).inflate(contentViewId,null));
-
-        if (isTable) {
-            if (!TextUtils.isEmpty(titleName)) {//如果内容不为空，则设置标题
-                name.setText(titleName);
-            }
-            if (isTitleBack) {//判断返回键是否显示
-                /**返回键的点击事件*/
-                back.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        onBackClick();
-                    }
-                });
-                back.setVisibility(View.VISIBLE);
-            } else {
-                back.setVisibility(View.GONE);
-            }
-            tableView.setVisibility(View.VISIBLE);
-        }else{
-            tableView.setVisibility(View.GONE);
-        }
-
-
-    }
 
 
     //-----------------------跳转方法---------------------
@@ -243,14 +201,8 @@ public abstract class BasicsActivity extends AppCompatActivity{
             ActivityInject annotation = getClass().getAnnotation(ActivityInject.class);
             //获取到对应的布局文件id
             contentViewId = annotation.contentViewId();
-            //获取到设对应的显示标题
-            isTable = annotation.isTable();
             //获取到设对应的Loading显示判断
             isLoading = annotation.isLoading();
-            //获取到标题名字
-            titleName = annotation.tableName();
-            //获取到返回键是否显示
-            isTitleBack = annotation.isBackShow();
 
         }else {//否则抛出异常
             throw new RuntimeException("Class must add annotations of ActivityFragmentInitParams.class");

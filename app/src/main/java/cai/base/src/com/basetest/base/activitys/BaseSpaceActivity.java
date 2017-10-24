@@ -10,11 +10,9 @@ import cai.base.src.com.basetest.enums.ActivityTypeEnum;
  */
 
 public abstract class BaseSpaceActivity extends BasicsActivity {
-
-
     @Override
-    protected void onBackClick() {
-
+    protected void onSpaceActivity(Bundle savedInstanceState) {
+        setContentView(contentViewId);
     }
 
     @Override
@@ -29,10 +27,7 @@ public abstract class BaseSpaceActivity extends BasicsActivity {
     @Override
     protected void onFragmentActivity(Bundle savedInstanceState) {}
 
-    @Override
-    protected void onSpaceActivity(Bundle savedInstanceState) {
-        setContentView(R.layout.layout_base_activity);
-    }
+
 
     @Override
     protected void onTitleActivity(Bundle savedInstanceState) {}

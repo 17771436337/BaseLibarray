@@ -158,9 +158,9 @@ public abstract class BaseListFragment extends BasicsFragment {
 
     /**设置对应的RecyclerView的显示类别值*/
  private class BaseListType{
-      private static final int LINEAR_LAYOUT_MANAGER = 0;
-     private static final int GRID_LAYOUT_MANAGER = 1;
-     private static  final int STAGGERED_GRID_LAYOUT_MANAGER = 2;
+        private static final int LINEAR_LAYOUT_MANAGER = 0;
+        private static final int GRID_LAYOUT_MANAGER = 1;
+        private static  final int STAGGERED_GRID_LAYOUT_MANAGER = 2;
   }
 
 
