@@ -35,17 +35,9 @@ ElemenetType.TYPE          　　　　  类，接口（包括注解类型）或
 public @interface ActivityInject {
     /**
      * 中间布局
-     *
      * @return
      */
     int contentViewId() default -1;
-
-
-    /**
-     * 日志输出标志
-     * @return
-     */
-    String getTag() default "Test";
 
     /**
      * 是否显示标题
@@ -70,13 +62,5 @@ public @interface ActivityInject {
      * @return
      */
     boolean isLoading() default false;
-
-    /**
-     * 判断Activity的类别
-     * @return
-     */
-    ActivityTypeEnum  activityType() default ActivityTypeEnum.BaseActivity;
-
-
 
 }

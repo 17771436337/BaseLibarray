@@ -1,4 +1,4 @@
-package cai.base.src.com.basetest.base;
+package cai.base.src.com.basetest.base.fragments;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,7 +17,7 @@ import cai.base.src.com.basetest.enums.FragmentTypeEnum;
  * Created by Administrator on 2017/10/23.
  */
 
-public abstract class BaseFragment extends Fragment {
+public abstract class BasicsFragment extends Fragment {
 
     /**上下文参数*/
     protected Context context;
@@ -27,8 +27,8 @@ public abstract class BaseFragment extends Fragment {
     protected int contentViewId;
     /** 是否添加加载弹框*/
     protected boolean isLoading;
-    /** Fragment的类别 */
-    protected FragmentTypeEnum fragmentType;
+
+
 
     @Nullable
     @Override
@@ -54,19 +54,24 @@ public abstract class BaseFragment extends Fragment {
 
 
     /**列表的视图*/
-    protected abstract void setListFragment(LayoutInflater inflater);
+    protected abstract void onListFragment(LayoutInflater inflater);
 
-//    protected abstract void setBaseFragment(LayoutInflater inflater);
+    protected abstract void onSpaceFragment(LayoutInflater inflater);
 
+    /** Fragment的类别 */
+    protected abstract FragmentTypeEnum getFragmentType();
 
     /**判断不同类别，执行不同的逻辑方法*/
-    protected void isFragmentType(LayoutInflater inflater){
-        switch (fragmentType){
-            case BaseFragment:
-                mView = inflater.inflate(contentViewId,null);
+    private void isFragmentType(LayoutInflater inflater){
+        switch (getFragmentType()){
+            case SpaceFragment:
+                onSpaceFragment(inflater);
                 break;
             case ListFragment:
-                setListFragment(inflater);
+                onListFragment(inflater);
+                break;
+            default:
+                onSpaceFragment(inflater);
                 break;
         }
     }
@@ -121,8 +126,6 @@ public abstract class BaseFragment extends Fragment {
             FragmentInject annotation = getClass().getAnnotation(FragmentInject.class);
             //获取到对应的布局文件id
             contentViewId = annotation.contentViewId();
-            //获取到对应的Fragment的类别
-            fragmentType = annotation.fragmentType();
             //获取到设对应的Loading显示判断
             isLoading = annotation.isLoading();
 

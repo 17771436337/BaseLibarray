@@ -1,4 +1,4 @@
-package cai.base.src.com.basetest.base;
+package cai.base.src.com.basetest.base.fragments;
 
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,10 +14,11 @@ import cai.base.src.com.basetest.enums.FragmentTypeEnum;
 
 /**
  * Created by Administrator on 2017/10/23.
+ * 列表展示数据
  */
 
-@FragmentInject(fragmentType = FragmentTypeEnum.ListFragment)
-public abstract class BaseListFragment extends BaseFragment {
+
+public abstract class BaseListFragment extends BasicsFragment {
     /**
      * grid布局与瀑布流布局默认行数
      */
@@ -54,11 +55,39 @@ public abstract class BaseListFragment extends BaseFragment {
     protected abstract void  onLoadMore();
 
 
-
     @Override
-    protected void setListFragment(LayoutInflater inflater) {
+    protected void onListFragment(LayoutInflater inflater) {
         mView = inflater.inflate(R.layout.fragment_base_list,null);
     }
+
+
+    @Override
+    protected FragmentTypeEnum getFragmentType() {
+        return FragmentTypeEnum.ListFragment;
+    }
+
+    @Override
+    protected void onSpaceFragment(LayoutInflater inflater) {}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /**适配器*/
     public class ListAdapter extends RecyclerView.Adapter{
@@ -120,6 +149,9 @@ public abstract class BaseListFragment extends BaseFragment {
         }
         mRecyclerView.setAdapter(mAdapter);
     }
+
+
+
 
 
 

@@ -7,6 +7,8 @@ import android.net.wifi.hotspot2.pps.HomeSp;
  */
 
 public enum ActivityTypeEnum {
-    BaseActivity,//空白Activity
+    SpaceActivity,//空白Activity
     HomeActivity,//首页Activity
+    TitleActivity,//带标题的Activity
+    FragmentActivity,//包含Fragment的对应Activity
 }

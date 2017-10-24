@@ -5,13 +5,13 @@ import android.util.Log;
 import android.view.View;
 
 import cai.base.src.com.basetest.annotation.FragmentInject;
-import cai.base.src.com.basetest.base.BaseListFragment;
+import cai.base.src.com.basetest.base.fragments.BaseListFragment;
 import cai.base.src.com.basetest.enums.FragmentTypeEnum;
 
 /**
  * Created by Administrator on 2017/10/23.
  */
-@FragmentInject(contentViewId = R.layout.fragment_main,fragmentType = FragmentTypeEnum.ListFragment)
+@FragmentInject(contentViewId = R.layout.fragment_main)
 public class MainFragment extends BaseListFragment{
     @Override
     protected void init() {

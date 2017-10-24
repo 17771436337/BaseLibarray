@@ -1,4 +1,4 @@
-package cai.base.src.com.basetest.base;
+package cai.base.src.com.basetest.base.activitys;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,13 +24,10 @@ import cai.base.src.com.basetest.enums.ActivityTypeEnum;
 /**
  * Created by Administrator on 2017/9/25.
  */
-public abstract class BaseActivity extends AppCompatActivity{
+public abstract class BasicsActivity extends AppCompatActivity{
 
-
-    /** 日志输出标志 */
-    protected String TAG;
     /**布局文件id*/
-   private int contentViewId;
+    protected int contentViewId;
     /** 是否显示标题 */
     private boolean isTable = false;
 
@@ -41,13 +38,6 @@ public abstract class BaseActivity extends AppCompatActivity{
     /** 是否添加加载弹框*/
     private boolean isLoading ;
 
-    /**
-     * Activity类别
-     */
-    ActivityTypeEnum activityType;
-
-
-
 
     //-------------------------------------------------------------------周期相关代码----------------------------------------------------------------
 
@@ -55,9 +45,9 @@ public abstract class BaseActivity extends AppCompatActivity{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getAnnotation();
-        setContentView(R.layout.layout_base_activity);
+        isActivityType(savedInstanceState);
         setTableView();
-        inject(this);
+//        inject(this);
         initData();
         showLoading();
     }
@@ -100,15 +90,48 @@ public abstract class BaseActivity extends AppCompatActivity{
      */
     protected abstract void onBackClick();
 
+    /**
+     * 获取Activity类别
+     */
+    protected abstract ActivityTypeEnum getActivityType();
+
+    /**
+     * 首页的Activity
+     */
+    protected abstract void onHomeActivity(Bundle savedInstanceState);
+
+    /**
+     * 附带Fragment的Activity
+     */
+    protected abstract void onFragmentActivity(Bundle savedInstanceState);
+
+    /**
+     * 基础的Fragment
+     */
+    protected abstract void onSpaceActivity(Bundle savedInstanceState);
+
+    /**
+     * 带有标题的Fragment
+     */
+    protected abstract void onTitleActivity(Bundle savedInstanceState);
 
     /**判断不同类别，执行不同的逻辑方法*/
-    private void isActivityType(){
-        switch (activityType){
-            case HomeActivity:
+    private void isActivityType(Bundle savedInstanceState){
+        switch (getActivityType()){
+            case HomeActivity://首页
+                onHomeActivity(savedInstanceState);
                 break;
-            case BaseActivity:
+            case SpaceActivity:
+                onSpaceActivity(savedInstanceState);
+                break;
+            case TitleActivity:
+                onTitleActivity(savedInstanceState);
+                break;
+            case FragmentActivity:
+                onFragmentActivity(savedInstanceState);
                 break;
             default:
+                onSpaceActivity(savedInstanceState);
                 break;
         }
     }
@@ -220,10 +243,6 @@ public abstract class BaseActivity extends AppCompatActivity{
             ActivityInject annotation = getClass().getAnnotation(ActivityInject.class);
             //获取到对应的布局文件id
             contentViewId = annotation.contentViewId();
-            //获取到对应的Activity的类别
-            activityType = annotation.activityType();
-            //获取到设置的对应的日志输出标志
-            TAG = annotation.getTag();
             //获取到设对应的显示标题
             isTable = annotation.isTable();
             //获取到设对应的Loading显示判断

@@ -5,6 +5,6 @@ package cai.base.src.com.basetest.enums;
  */
 
 public enum FragmentTypeEnum {
-    BaseFragment,//空白Fragment
+    SpaceFragment,//空白Fragment
     ListFragment,//列表Fragment
 }

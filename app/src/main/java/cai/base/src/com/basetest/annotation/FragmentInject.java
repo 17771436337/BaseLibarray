@@ -26,10 +26,5 @@ public @interface FragmentInject{
      */
     boolean isLoading() default false;
 
-    /**
-     * 判断Activity的类别
-     * @return
-     */
-    FragmentTypeEnum fragmentType() default FragmentTypeEnum.BaseFragment;
 
 }
