@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <com.aspsine.swipetoloadlayout.SwipeToLoadLayout
+        android:id="@+id/swipe_to_loadlayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="要不止列表视图"/>
-</LinearLayout>
+        android:layout_height="match_parent">
+
+<cai.base.src.com.basetest.views.CustomRefreshHeadView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@id/swipe_refresh_header"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@id/swipe_target"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </com.aspsine.swipetoloadlayout.SwipeToLoadLayout>
+
+</RelativeLayout>

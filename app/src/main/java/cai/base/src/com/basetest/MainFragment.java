@@ -15,7 +15,7 @@ import cai.base.src.com.basetest.enums.FragmentTypeEnum;
 public class MainFragment extends BaseListFragment{
     @Override
     protected void init() {
-        Log.i("test","测试");
+//        Log.i("test","测试");
     }
 
 
@@ -29,13 +29,7 @@ public class MainFragment extends BaseListFragment{
 
     }
 
-    @Override
-    protected void onRefresh() {
 
-    }
 
-    @Override
-    protected void onLoadMore() {
 
-    }
 }

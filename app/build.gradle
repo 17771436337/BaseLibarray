@@ -26,7 +26,14 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support:recyclerview-v7:26.+'
+    compile 'com.android.support:design:26.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
+
+
+
+    //上拉刷新，下拉加载
+    compile 'com.github.Aspsine:SwipeToLoadLayout:1.0.4'
+    //首页底部标签栏
     compile 'com.ycl.tabview.library:tabviewlibrary:1.0'
 }
