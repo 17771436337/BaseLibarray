@@ -4,8 +4,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.KeyEvent;
 
-import cai.base.src.com.basetest.enums.ActivityTypeEnum;
-
 /**
  * Created by Administrator on 2017/10/24.
  */
@@ -14,10 +12,11 @@ public abstract class BaseFragmentActivity extends BasicsActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        setContentView(contentViewId);
+        setContentView(getContentViewId());
     }
 
-
+    /**布局ID*/
+    protected abstract int getContentViewId();
 
     /**
      *  添加Fragment
@@ -33,6 +32,8 @@ public abstract class BaseFragmentActivity extends BasicsActivity {
                     .replace(id, fragment, fragment.getClass().getSimpleName())
                     .addToBackStack(fragment.getClass().getSimpleName())
                     .commitAllowingStateLoss();
+        }else{
+            throw new RuntimeException("Class must add addFragment of Fragment.class");
         }
     }
 

@@ -15,7 +15,6 @@ import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 
 import cai.base.src.com.basetest.R;
-import cai.base.src.com.basetest.enums.FragmentTypeEnum;
 import cai.base.src.com.basetest.views.CustomRefreshFootView;
 import cai.base.src.com.basetest.views.CustomRefreshHeadView;
 

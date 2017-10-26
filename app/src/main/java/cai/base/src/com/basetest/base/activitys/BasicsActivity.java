@@ -1,14 +1,10 @@
 package cai.base.src.com.basetest.base.activitys;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,23 +13,13 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import cai.base.src.com.basetest.R;
-import cai.base.src.com.basetest.annotation.ActivityInject;
 import cai.base.src.com.basetest.annotation.FindById;
-import cai.base.src.com.basetest.enums.ActivityTypeEnum;
 
 /**
  * Created by Administrator on 2017/9/25.
  */
 public abstract class BasicsActivity extends AppCompatActivity{
 
-    /**布局文件id*/
-    protected int contentViewId;
-    /** 是否显示标题 */
-    private boolean isTable = false;
-
-
-    /** 是否添加加载弹框*/
-    private boolean isLoading ;
 
 
     //-------------------------------------------------------------------周期相关代码----------------------------------------------------------------
@@ -41,11 +27,9 @@ public abstract class BasicsActivity extends AppCompatActivity{
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getAnnotation();
         initView(savedInstanceState);
-        inject(this);
         initData();
-        showLoading();
+
     }
 
 
@@ -61,7 +45,7 @@ public abstract class BasicsActivity extends AppCompatActivity{
     /***
      * Loading的显示
      */
-    protected void showLoading(){
+    protected void showLoading(boolean isLoading){
         if (isLoading){//数据加载Load显示
             Toast.makeText(this,"测试",Toast.LENGTH_SHORT).show();
         }
@@ -136,22 +120,6 @@ public abstract class BasicsActivity extends AppCompatActivity{
 
 
     //-------------------------------------------------------------------反射逻辑处理代码----------------------------------------------------------------
-
-    /**注解内容获取*/
-    private void getAnnotation(){
-        if (getClass().isAnnotationPresent(ActivityInject.class)){//判断是否为当前的注解方式
-            //获取到注解类的实例化对象
-            ActivityInject annotation = getClass().getAnnotation(ActivityInject.class);
-            //获取到对应的布局文件id
-            contentViewId = annotation.contentViewId();
-            //获取到设对应的Loading显示判断
-            isLoading = annotation.isLoading();
-
-        }else {//否则抛出异常
-            throw new RuntimeException("Class must add annotations of ActivityFragmentInitParams.class");
-        }
-    }
-
 
     /**
      * 设置对应的布局控件初始化

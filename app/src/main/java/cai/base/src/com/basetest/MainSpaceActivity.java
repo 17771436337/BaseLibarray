@@ -1,8 +1,6 @@
 package cai.base.src.com.basetest;
 
 
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.widget.Toast;
 
 import com.ycl.tabview.library.TabViewChild;
@@ -10,13 +8,8 @@ import com.ycl.tabview.library.TabViewChild;
 import java.util.ArrayList;
 import java.util.List;
 
-import cai.base.src.com.basetest.annotation.ActivityInject;
 import cai.base.src.com.basetest.base.activitys.BaseHomeActivity;
-import cai.base.src.com.basetest.base.activitys.BaseSpaceActivity;
-import cai.base.src.com.basetest.enums.ActivityTypeEnum;
 
-
-@ActivityInject(contentViewId = R.layout.activity_main)
 public class MainSpaceActivity extends BaseHomeActivity {
 
 

@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import cai.base.src.com.basetest.R;
-import cai.base.src.com.basetest.enums.ActivityTypeEnum;
 
 /**
  * Created by Administrator on 2017/10/24.
@@ -40,7 +39,7 @@ public abstract class BaseTitleActivity extends BasicsActivity {
         TextView name = tableView.findViewById(R.id.table_name);
 
         FrameLayout content = (FrameLayout)findViewById(R.id.activity_base_content);
-        content.addView(LayoutInflater.from(this).inflate(contentViewId,null));
+        content.addView(LayoutInflater.from(this).inflate(getContentViewId(),null));
             if (!TextUtils.isEmpty(getTitleName())) {//如果内容不为空，则设置标题
                 name.setText(getTitleName());
             }
@@ -60,6 +59,9 @@ public abstract class BaseTitleActivity extends BasicsActivity {
     }
 
 
+
+    /**布局ID*/
+    protected abstract int getContentViewId();
 
 
     @Override

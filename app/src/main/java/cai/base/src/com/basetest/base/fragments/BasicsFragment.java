@@ -11,9 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import cai.base.src.com.basetest.R;
-import cai.base.src.com.basetest.annotation.FragmentInject;
 import cai.base.src.com.basetest.base.activitys.BasicsActivity;
-import cai.base.src.com.basetest.enums.FragmentTypeEnum;
 
 /**
  * Created by Administrator on 2017/10/23.
@@ -25,10 +23,6 @@ public abstract class BasicsFragment extends Fragment {
     protected Context context;
     /**当前布局的视图*/
     protected  View mView;
-    /**布局文件id*/
-    protected int contentViewId;
-    /** 是否添加加载弹框*/
-    protected boolean isLoading;
     /**宿主Activity*/
     private BasicsActivity mActivity;
 
@@ -44,7 +38,6 @@ public abstract class BasicsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        getAnnotation();
         context = getActivity();
         initView(inflater,savedInstanceState);
         init();
@@ -119,20 +112,19 @@ public abstract class BasicsFragment extends Fragment {
 
 
     //-------------------------------------------------------------------反射逻辑处理代码----------------------------------------------------------------
-    /**注解内容获取*/
-    private void getAnnotation(){
-        if (getClass().isAnnotationPresent(FragmentInject.class)){//判断是否为当前的注解方式
-            //获取到注解类的实例化对象
-            FragmentInject annotation = getClass().getAnnotation(FragmentInject.class);
-            //获取到对应的布局文件id
-            contentViewId = annotation.contentViewId();
-            //获取到设对应的Loading显示判断
-            isLoading = annotation.isLoading();
 
-        }else {//否则抛出异常
-            throw new RuntimeException("Class must add annotations of FragmentInject.class");
-        }
-    }
-
+//    /**注解内容获取*/
+//    private void getAnnotation(){
+//        if (getClass().isAnnotationPresent(FragmentInject.class)){//判断是否为当前的注解方式
+//            //获取到注解类的实例化对象
+//            FragmentInject annotation = getClass().getAnnotation(FragmentInject.class);
+//            //获取到对应的布局文件id
+//            contentViewId = annotation.contentViewId();
+//            //获取到设对应的Loading显示判断
+//            isLoading = annotation.isLoading();
+//        }else {//否则抛出异常
+//            throw new RuntimeException("Class must add annotations of FragmentInject.class");
+//        }
+//    }
 
 }

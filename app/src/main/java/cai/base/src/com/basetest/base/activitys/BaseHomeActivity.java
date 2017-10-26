@@ -9,12 +9,10 @@ import android.widget.Toast;
 import com.ycl.tabview.library.TabView;
 import com.ycl.tabview.library.TabViewChild;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import cai.base.src.com.basetest.MainFragment;
 import cai.base.src.com.basetest.R;
-import cai.base.src.com.basetest.enums.ActivityTypeEnum;
+
 
 /**
  * Created by Administrator on 2017/10/24.
@@ -33,7 +31,7 @@ public abstract class BaseHomeActivity extends BasicsActivity {
         //start add data
 
         //end add data
-        tabView.setTabViewDefaultPosition(2);
+        tabView.setTabViewDefaultPosition(0);
         tabView.setTabViewChild(getTabDatas(),getSupportFragmentManager());
         tabView.setOnTabChildClickListener(new TabView.OnTabChildClickListener() {
             @Override
@@ -50,11 +48,6 @@ public abstract class BaseHomeActivity extends BasicsActivity {
 
 
     protected abstract void onTabClick(int  position);
-
-
-
-
-
 
 
     @Override
