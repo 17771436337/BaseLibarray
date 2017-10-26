@@ -55,6 +55,7 @@ public abstract class BaseFragmentActivity extends BasicsActivity {
 
         if (KeyEvent.KEYCODE_BACK == keyCode) {
             if (getSupportFragmentManager().getBackStackEntryCount() == 1) {
+                finish();
                 return true;
             }
         }

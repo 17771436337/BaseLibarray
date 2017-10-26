@@ -2,6 +2,7 @@ package cai.base.src.com.basetest;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Toast;
 
 import cai.base.src.com.basetest.base.fragments.BaseListFragment;
 
@@ -27,6 +28,13 @@ public class MainFragment extends BaseListFragment{
     }
 
 
+    @Override
+    public void onRefresh() {
+        Toast.makeText(context,"上拉刷新",Toast.LENGTH_SHORT).show();
+    }
 
-
+    @Override
+    public void onLoadMore() {
+        Toast.makeText(context,"下拉加载",Toast.LENGTH_SHORT).show();
+    }
 }

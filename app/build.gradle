@@ -1,14 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.1"
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
     defaultConfig {
         applicationId "cai.base.src.com.basetest"
-        minSdkVersion 22
-        targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -24,16 +24,9 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:26.+'
-    compile 'com.android.support:recyclerview-v7:26.+'
-    compile 'com.android.support:design:26.+'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    testCompile 'junit:junit:4.12'
-
-
-
-    //上拉刷新，下拉加载
-    compile 'com.github.Aspsine:SwipeToLoadLayout:1.0.4'
+    compile rootProject.ext.dependencies.constraint
+    testCompile rootProject.ext.dependencies.junit
     //首页底部标签栏
-    compile 'com.ycl.tabview.library:tabviewlibrary:1.0'
+    compile rootProject.ext.dependencies.tabviewlibrary
+    compile project(rootProject.ext.libs.xrecyclerview)
 }

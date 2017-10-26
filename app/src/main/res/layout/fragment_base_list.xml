@@ -3,19 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.aspsine.swipetoloadlayout.SwipeToLoadLayout
-        android:id="@+id/swipe_to_loadlayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-<cai.base.src.com.basetest.views.CustomRefreshHeadView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@id/swipe_refresh_header"/>
-        <android.support.v7.widget.RecyclerView
-            android:id="@id/swipe_target"
+        <com.jcodecraeer.xrecyclerview.XRecyclerView
+            android:id="@+id/recyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
-    </com.aspsine.swipetoloadlayout.SwipeToLoadLayout>
+
 
 </RelativeLayout>

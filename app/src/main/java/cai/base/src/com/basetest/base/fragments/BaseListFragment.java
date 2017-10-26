@@ -5,18 +5,14 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
-import com.aspsine.swipetoloadlayout.OnRefreshListener;
-import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
+import com.jcodecraeer.xrecyclerview.ProgressStyle;
+import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
 import cai.base.src.com.basetest.R;
-import cai.base.src.com.basetest.views.CustomRefreshFootView;
-import cai.base.src.com.basetest.views.CustomRefreshHeadView;
 
 /**
  * Created by Administrator on 2017/10/23.
@@ -24,7 +20,7 @@ import cai.base.src.com.basetest.views.CustomRefreshHeadView;
  */
 
 
-public abstract class BaseListFragment extends BasicsFragment implements OnLoadMoreListener, OnRefreshListener {
+public abstract class BaseListFragment extends BasicsFragment implements XRecyclerView.LoadingListener {
     /**
      * grid布局与瀑布流布局默认行数
      */
@@ -43,11 +39,10 @@ public abstract class BaseListFragment extends BasicsFragment implements OnLoadM
     private boolean isRefresh = true;
 
 
+    protected XRecyclerView mRecyclerView;
 
-    protected RecyclerView mRecyclerView;
-    private SwipeToLoadLayout mSwipeToLoadLayout;
     protected ListAdapter  mAdapter;
-    CustomRefreshHeadView headView;
+
 
     /**对应的Item的单机事件*/
     protected abstract void onItemClick(View view,RecyclerView.ViewHolder holder,int position);
@@ -55,11 +50,6 @@ public abstract class BaseListFragment extends BasicsFragment implements OnLoadM
     /**对应的Item的长按事件*/
     protected abstract void onItemLongClick(View view,RecyclerView.ViewHolder holder,int position);
 
-//    /**上拉刷新*/
-//    protected abstract void onRefresh();
-//
-//    /** 下拉加载*/
-//    protected abstract void  onLoadMore();
 
 
     @Override
@@ -70,33 +60,26 @@ public abstract class BaseListFragment extends BasicsFragment implements OnLoadM
     @Override
     protected void initView(LayoutInflater inflater, Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_base_list,null);
-        mSwipeToLoadLayout = mView.findViewById(R.id.swipe_to_loadlayout);
-        mRecyclerView = mView.findViewById(R.id.swipe_target);
-        CustomRefreshFootView footView = new CustomRefreshFootView(context);
-        mSwipeToLoadLayout.setLoadMoreFooterView(footView);
-        headView =mView.findViewById(R.id.swipe_refresh_header);
-//        mSwipeToLoadLayout.setRefreshHeaderView(headView);
+
+        mRecyclerView = mView.findViewById(R.id.recyclerview);
 
         mAdapter = new ListAdapter();
-        chooseListType(0,true);
+        chooseListType(mListType,mIsVertical);
+        mRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
+        mRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.BallRotate);
+        setLoadMoreAndRefresh(isLoadMore,isRefresh);
 
-        mSwipeToLoadLayout.setOnLoadMoreListener(this);
-        mSwipeToLoadLayout.setOnRefreshListener(this);
-    }
-
-
-    @Override
-    public void onLoadMore() {
-        Log.i("test","测试成功:onLoadMore");
+        mRecyclerView.setLoadingListener(this);
 
     }
 
-    @Override
-    public void onRefresh() {
-        Log.i("test","测试成功:onRefresh");
-        mSwipeToLoadLayout.removeView(headView);
-        mSwipeToLoadLayout.setRefreshing(false);
+    /**设置是否上拉或者下拉*/
+    protected void setLoadMoreAndRefresh(boolean isLoadMore,boolean isRefresh){
+        mRecyclerView.setLoadingMoreEnabled(isLoadMore);
+        mRecyclerView.setPullRefreshEnabled(isRefresh);
     }
+
+
 
 
     /**适配器*/
@@ -170,11 +153,6 @@ public abstract class BaseListFragment extends BasicsFragment implements OnLoadM
         }
         mRecyclerView.setAdapter(mAdapter);
     }
-
-
-
-
-
 
 
     /**设置对应的RecyclerView的显示类别值*/

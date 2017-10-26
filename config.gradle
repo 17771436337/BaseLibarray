@@ -1,0 +1,48 @@
+ext {
+    /**安卓基本包配置*/
+    android = [
+            compileSdkVersion: 26,
+            buildToolsVersion: "26.0.0",
+            minSdkVersion    : 17,
+            targetSdkVersion : 26,
+            versionCode      : 2,
+            versionName      : "1.1.1.2",
+
+    ]
+
+
+    dependVersion = [
+            support: "26.+",
+    ]
+
+    /**导入文件的基本配置*/
+    dependencies = [
+
+            // ------------- Android -------------
+//            appcompatV7 : 'com.android.support:appcompat-v7:23.4.0',
+//            recyclerview :'com.android.support:recyclerview-v7:26.+',
+//            design : 'com.android.support:design:26.+',
+            appcompatV7           : "com.android.support:appcompat-v7:${dependVersion.support}",
+            design                : "com.android.support:design:${dependVersion.support}",
+            junit                 : "junit:junit:4.12",
+            recyclerview          :'com.android.support:recyclerview-v7:${dependVersion.support}',
+            supportV4             : 'com.android.support:support-v4:${dependVersion.support}',
+            annotations           :'com.android.support:support-annotations:${dependVersion.support}',
+            constraint            :'com.android.support.constraint:constraint-layout:1.0.2',
+
+
+            // ------------- 首页底部标签栏 -------------
+            tabviewlibrary            :'com.ycl.tabview.library:tabviewlibrary:1.0',
+
+    ]
+
+
+
+    /**依赖项目*/
+    libs = [
+            //上拉下拉框架
+            xrecyclerview :':xrecyclerview',
+    ]
+
+
+}
