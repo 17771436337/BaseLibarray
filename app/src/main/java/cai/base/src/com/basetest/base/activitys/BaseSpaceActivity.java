@@ -10,25 +10,10 @@ import cai.base.src.com.basetest.enums.ActivityTypeEnum;
  */
 
 public abstract class BaseSpaceActivity extends BasicsActivity {
+
     @Override
-    protected void onSpaceActivity(Bundle savedInstanceState) {
+    protected void initView(Bundle savedInstanceState) {
         setContentView(contentViewId);
     }
 
-    @Override
-    protected void onHomeActivity(Bundle savedInstanceState) {
-
-    }
-    @Override
-    protected ActivityTypeEnum getActivityType() {
-        return ActivityTypeEnum.SpaceActivity;
-    }
-
-    @Override
-    protected void onFragmentActivity(Bundle savedInstanceState) {}
-
-
-
-    @Override
-    protected void onTitleActivity(Bundle savedInstanceState) {}
 }

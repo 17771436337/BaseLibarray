@@ -1,8 +1,12 @@
 package cai.base.src.com.basetest.base.fragments;
 
+import android.app.Activity;
+import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 
 import cai.base.src.com.basetest.R;
+import cai.base.src.com.basetest.base.activitys.BasicsActivity;
 import cai.base.src.com.basetest.enums.FragmentTypeEnum;
 
 import static cai.base.src.com.basetest.enums.FragmentTypeEnum.*;
@@ -11,7 +15,8 @@ import static cai.base.src.com.basetest.enums.FragmentTypeEnum.*;
  * Created by Administrator on 2017/10/24.
  */
 
-public abstract class BaseSpaceFragment extends BasicsFragment {
+public class BaseSpaceFragment extends BasicsFragment {
+
 
 
     @Override
@@ -20,18 +25,9 @@ public abstract class BaseSpaceFragment extends BasicsFragment {
     }
 
     @Override
-    protected void onListFragment(LayoutInflater inflater) {
-
-    }
-
-    @Override
-    protected void onSpaceFragment(LayoutInflater inflater) {
+    protected void initView(LayoutInflater inflater, Bundle savedInstanceState) {
         mView = inflater.inflate(contentViewId, null);
     }
 
-    @Override
-    protected FragmentTypeEnum getFragmentType() {
-        return SpaceFragment;
-    }
 
 }

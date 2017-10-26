@@ -42,22 +42,12 @@ public abstract class BasicsActivity extends AppCompatActivity{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getAnnotation();
-        isActivityType(savedInstanceState);
-//
+        initView(savedInstanceState);
         inject(this);
         initData();
         showLoading();
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
 
     @Override
     public void finish() {
@@ -82,54 +72,7 @@ public abstract class BasicsActivity extends AppCompatActivity{
      */
     protected abstract void initData();
 
-
-
-    /**
-     * 获取Activity类别
-     */
-    protected abstract ActivityTypeEnum getActivityType();
-
-    /**
-     * 首页的Activity
-     */
-    protected abstract void onHomeActivity(Bundle savedInstanceState);
-
-    /**
-     * 附带Fragment的Activity
-     */
-    protected abstract void onFragmentActivity(Bundle savedInstanceState);
-
-    /**
-     * 基础的Fragment
-     */
-    protected abstract void onSpaceActivity(Bundle savedInstanceState);
-
-    /**
-     * 带有标题的Fragment
-     */
-    protected abstract void onTitleActivity(Bundle savedInstanceState);
-
-    /**判断不同类别，执行不同的逻辑方法*/
-    private void isActivityType(Bundle savedInstanceState){
-        switch (getActivityType()){
-            case HomeActivity://首页
-                onHomeActivity(savedInstanceState);
-                break;
-            case SpaceActivity:
-                onSpaceActivity(savedInstanceState);
-                break;
-            case TitleActivity:
-                onTitleActivity(savedInstanceState);
-                break;
-            case FragmentActivity:
-                onFragmentActivity(savedInstanceState);
-                break;
-            default:
-                onSpaceActivity(savedInstanceState);
-                break;
-        }
-    }
-
+    protected abstract void initView(Bundle savedInstanceState);
 
 
 

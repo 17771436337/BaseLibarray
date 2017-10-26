@@ -29,13 +29,6 @@ public abstract class BaseTitleActivity extends BasicsActivity {
     protected abstract void onBackClick();
 
 
-    @Override
-    protected void onTitleActivity(Bundle savedInstanceState) {
-        setContentView(R.layout.layout_base_activity);
-        setTableView();
-    }
-
-
 
     /**
      * 初始化视图，并且添加对应的标题
@@ -70,18 +63,8 @@ public abstract class BaseTitleActivity extends BasicsActivity {
 
 
     @Override
-    protected ActivityTypeEnum getActivityType() {
-        return ActivityTypeEnum.TitleActivity;
+    protected void initView(Bundle savedInstanceState) {
+        setContentView(R.layout.layout_base_activity);
+        setTableView();
     }
-
-    @Override
-    protected void onHomeActivity(Bundle savedInstanceState) {}
-
-    @Override
-    protected void onFragmentActivity(Bundle savedInstanceState) {}
-
-    @Override
-    protected void onSpaceActivity(Bundle savedInstanceState) {}
-
-
 }

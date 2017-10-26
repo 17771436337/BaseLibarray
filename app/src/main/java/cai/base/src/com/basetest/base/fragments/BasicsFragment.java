@@ -1,5 +1,6 @@
 package cai.base.src.com.basetest.base.fragments;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 
 import cai.base.src.com.basetest.R;
 import cai.base.src.com.basetest.annotation.FragmentInject;
+import cai.base.src.com.basetest.base.activitys.BasicsActivity;
 import cai.base.src.com.basetest.enums.FragmentTypeEnum;
 
 /**
@@ -27,7 +29,16 @@ public abstract class BasicsFragment extends Fragment {
     protected int contentViewId;
     /** 是否添加加载弹框*/
     protected boolean isLoading;
+    /**宿主Activity*/
+    private BasicsActivity mActivity;
 
+    /**
+     * 获取宿主的Activity
+     * @return
+     */
+    protected BasicsActivity getHoldingActivity(){
+        return mActivity;
+    }
 
 
     @Nullable
@@ -35,10 +46,17 @@ public abstract class BasicsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         getAnnotation();
         context = getActivity();
-        isFragmentType(inflater);
+        initView(inflater,savedInstanceState);
         init();
         return mView;
     }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        this.mActivity = (BasicsActivity) activity;
+    }
+
 
     @Override
     public void onDestroy() {
@@ -52,29 +70,11 @@ public abstract class BasicsFragment extends Fragment {
     /**初始化*/
     protected abstract void init();
 
+    /**初始化布局*/
+    protected abstract void initView(LayoutInflater inflater,Bundle savedInstanceState);
 
-    /**列表的视图*/
-    protected abstract void onListFragment(LayoutInflater inflater);
 
-    protected abstract void onSpaceFragment(LayoutInflater inflater);
 
-    /** Fragment的类别 */
-    protected abstract FragmentTypeEnum getFragmentType();
-
-    /**判断不同类别，执行不同的逻辑方法*/
-    private void isFragmentType(LayoutInflater inflater){
-        switch (getFragmentType()){
-            case SpaceFragment:
-                onSpaceFragment(inflater);
-                break;
-            case ListFragment:
-                onListFragment(inflater);
-                break;
-            default:
-                onSpaceFragment(inflater);
-                break;
-        }
-    }
     //-----------------------跳转方法---------------------
     /**
      * Fragment不带参数得页面跳转

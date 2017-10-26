@@ -1,5 +1,6 @@
 package cai.base.src.com.basetest.base.fragments;
 
+import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -62,16 +63,19 @@ public abstract class BaseListFragment extends BasicsFragment implements OnLoadM
 //    protected abstract void  onLoadMore();
 
 
+    @Override
+    protected void init() {
 
+    }
 
     @Override
-    protected void onListFragment(LayoutInflater inflater) {
+    protected void initView(LayoutInflater inflater, Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_base_list,null);
         mSwipeToLoadLayout = mView.findViewById(R.id.swipe_to_loadlayout);
         mRecyclerView = mView.findViewById(R.id.swipe_target);
         CustomRefreshFootView footView = new CustomRefreshFootView(context);
         mSwipeToLoadLayout.setLoadMoreFooterView(footView);
-headView =mView.findViewById(R.id.swipe_refresh_header);
+        headView =mView.findViewById(R.id.swipe_refresh_header);
 //        mSwipeToLoadLayout.setRefreshHeaderView(headView);
 
         mAdapter = new ListAdapter();
@@ -81,14 +85,6 @@ headView =mView.findViewById(R.id.swipe_refresh_header);
         mSwipeToLoadLayout.setOnRefreshListener(this);
     }
 
-
-    @Override
-    protected FragmentTypeEnum getFragmentType() {
-        return FragmentTypeEnum.ListFragment;
-    }
-
-    @Override
-    protected void onSpaceFragment(LayoutInflater inflater) {}
 
     @Override
     public void onLoadMore() {

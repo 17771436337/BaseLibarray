@@ -1,6 +1,8 @@
 package cai.base.src.com.basetest.base.activitys;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.KeyEvent;
 
 import cai.base.src.com.basetest.enums.ActivityTypeEnum;
 
@@ -11,21 +13,50 @@ import cai.base.src.com.basetest.enums.ActivityTypeEnum;
 public abstract class BaseFragmentActivity extends BasicsActivity {
 
     @Override
-    protected void onFragmentActivity(Bundle savedInstanceState) {
-
-
+    protected void initView(Bundle savedInstanceState) {
+        setContentView(contentViewId);
     }
 
-    @Override
-    protected ActivityTypeEnum getActivityType() {
-        return ActivityTypeEnum.FragmentActivity;
+
+
+    /**
+     *  添加Fragment
+     * @param id
+     *      布局中Fragment的ID
+     * @param fragment
+     *        需要填的Fragment
+     */
+    protected void addFragment(int id, Fragment fragment) {
+        if (fragment != null) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(id, fragment, fragment.getClass().getSimpleName())
+                    .addToBackStack(fragment.getClass().getSimpleName())
+                    .commitAllowingStateLoss();
+        }
     }
 
-    @Override
-    protected void onHomeActivity(Bundle savedInstanceState) { }
-    @Override
-    protected void onSpaceActivity(Bundle savedInstanceState) {}
+
+    /**
+     * 移除Fragment
+     */
+    protected void removeFragment() {
+        if (getSupportFragmentManager().getBackStackEntryCount() > 1) {
+            getSupportFragmentManager().popBackStack();
+        } else {
+            finish();
+        }
+    }
+
 
     @Override
-    protected void onTitleActivity(Bundle savedInstanceState) { }
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        if (KeyEvent.KEYCODE_BACK == keyCode) {
+            if (getSupportFragmentManager().getBackStackEntryCount() == 1) {
+                return true;
+            }
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 }

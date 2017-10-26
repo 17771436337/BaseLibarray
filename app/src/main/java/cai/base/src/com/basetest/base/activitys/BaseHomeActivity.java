@@ -25,22 +25,8 @@ public abstract class BaseHomeActivity extends BasicsActivity {
 
     private long exitTime;
 
-
     @Override
-    protected ActivityTypeEnum getActivityType() {
-        return ActivityTypeEnum.HomeActivity;
-    }
-
-
-    /**通过对应的数据进行添加首页*/
-    protected abstract List<TabViewChild> getTabDatas();
-
-
-    protected abstract void onTabClick(int  position);
-
-
-    @Override
-    protected void onHomeActivity(Bundle savedInstanceState) {
+    protected void initView(Bundle savedInstanceState) {
         setContentView(R.layout.activity_base_home);
 
         tabView= (TabView) findViewById(R.id.tabView);
@@ -57,6 +43,15 @@ public abstract class BaseHomeActivity extends BasicsActivity {
         });
 
     }
+
+
+    /**通过对应的数据进行添加首页*/
+    protected abstract List<TabViewChild> getTabDatas();
+
+
+    protected abstract void onTabClick(int  position);
+
+
 
 
 
@@ -77,13 +72,6 @@ public abstract class BaseHomeActivity extends BasicsActivity {
         }
         return super.onKeyDown(keyCode, event);
     }
-    @Override
-    protected void onFragmentActivity(Bundle savedInstanceState) {}
 
-    @Override
-    protected void onSpaceActivity(Bundle savedInstanceState) {}
-
-    @Override
-    protected void onTitleActivity(Bundle savedInstanceState) {}
 
 }
