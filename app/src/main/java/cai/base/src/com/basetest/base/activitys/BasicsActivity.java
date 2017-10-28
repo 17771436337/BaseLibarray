@@ -14,6 +14,7 @@ import java.lang.reflect.Method;
 
 import cai.base.src.com.basetest.R;
 import cai.base.src.com.basetest.annotation.FindById;
+import cai.base.src.com.basetest.manger.ActivityManger;
 
 /**
  * Created by Administrator on 2017/9/25.
@@ -27,11 +28,17 @@ public abstract class BasicsActivity extends AppCompatActivity{
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ActivityManger.getAppManager().addActivity(this);
         initView(savedInstanceState);
         initData();
-
     }
 
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ActivityManger.getAppManager().removeActivity(this);
+    }
 
     @Override
     public void finish() {

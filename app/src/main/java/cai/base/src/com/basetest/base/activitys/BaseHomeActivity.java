@@ -12,6 +12,7 @@ import com.ycl.tabview.library.TabViewChild;
 import java.util.List;
 
 import cai.base.src.com.basetest.R;
+import cai.base.src.com.basetest.manger.ActivityManger;
 
 
 /**
@@ -59,7 +60,7 @@ public abstract class BaseHomeActivity extends BasicsActivity {
                         Toast.LENGTH_SHORT).show();
                 exitTime = System.currentTimeMillis();
             } else {
-               System.exit(0);
+                ActivityManger.getAppManager().AppExit();
             }
             return true;
         }
