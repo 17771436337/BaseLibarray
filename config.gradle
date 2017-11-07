@@ -47,6 +47,8 @@ ext {
     libs = [
             //上拉下拉框架
             xrecyclerview :':xrecyclerview',
+            //工具，网络请求，数据库框架
+            xUtils        :':xutils',
     ]
 
 

@@ -30,8 +30,6 @@ dependencies {
     compile rootProject.ext.dependencies.tabviewlibrary
     //上拉加载下拉刷新
     compile project(rootProject.ext.libs.xrecyclerview)
-    //网络基础架构层
-    compile rootProject.ext.dependencies.nohttp
-    //网络底层Okhttp
-    compile rootProject.ext.dependencies.okhttp
+    // //工具，网络请求，数据库框架
+    compile project(rootProject.ext.libs.xUtils)
 }

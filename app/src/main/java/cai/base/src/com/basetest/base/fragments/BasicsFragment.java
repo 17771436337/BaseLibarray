@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.xutils.x;
+
 import cai.base.src.com.basetest.R;
 import cai.base.src.com.basetest.base.activitys.BasicsActivity;
 
@@ -26,6 +28,8 @@ public abstract class BasicsFragment extends Fragment {
     /**宿主Activity*/
     private BasicsActivity mActivity;
 
+    private boolean injected = false;
+
     /**
      * 获取宿主的Activity
      * @return
@@ -38,10 +42,20 @@ public abstract class BasicsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        injected = true;
         context = getActivity();
         initView(inflater,savedInstanceState);
+        x.view().inject(this, inflater, container);
         init();
         return mView;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        if (!injected) {
+            x.view().inject(this, this.getView());
+        }
     }
 
     @Override

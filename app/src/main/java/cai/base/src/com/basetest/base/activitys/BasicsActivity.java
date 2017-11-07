@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.xutils.x;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -30,6 +32,7 @@ public abstract class BasicsActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         ActivityManger.getAppManager().addActivity(this);
         initView(savedInstanceState);
+        x.view().inject(this);
         initData();
     }
 
