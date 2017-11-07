@@ -1,4 +1,4 @@
-package cai.base.src.com.basetest;
+package cai.base.src.com.basetest.manger;
 
 import android.app.Application;
 

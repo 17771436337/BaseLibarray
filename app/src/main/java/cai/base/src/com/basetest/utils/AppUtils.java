@@ -1,11 +1,19 @@
 package cai.base.src.com.basetest.utils;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.provider.Settings;
+import android.widget.Toast;
 
 import java.io.File;
+import java.util.Collections;
+import java.util.List;
+
+import cai.base.src.com.basetest.manger.ActivityManger;
 
 /**
  * Created by Administrator on 2017/10/28.
@@ -13,6 +21,55 @@ import java.io.File;
  */
 
 public class AppUtils {
+    private static AppUtils instance;
+
+    private AppUtils() {}
+
+
+    /**
+     * 单一实例
+     */
+    public static AppUtils getInstance() {
+        if (instance == null) {
+            synchronized (AppUtils.class) {
+                if (instance == null) {
+                    instance = new AppUtils();
+                }
+            }
+        }
+        return instance;
+    }
+
+    /**
+     * 检查系统应用程序，并打开
+     */
+    public void openApp(Context context,String packageName){
+        //应用过滤条件
+        Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
+        mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+        PackageManager mPackageManager = context.getPackageManager();
+        List<ResolveInfo> mAllApps = mPackageManager.queryIntentActivities(mainIntent, 0);
+        //按包名排序
+        Collections.sort(mAllApps, new ResolveInfo.DisplayNameComparator(mPackageManager));
+
+        for(ResolveInfo res : mAllApps){
+            //该应用的包名和主Activity
+            String pkg = res.activityInfo.packageName;
+            String cls = res.activityInfo.name;
+
+            if(pkg.contains(packageName)){
+                ComponentName componet = new ComponentName(pkg, cls);
+                Intent intent = new Intent();
+                intent.setComponent(componet);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+            }else{
+                Toast.makeText(context, "您未能成功打开该App,请下载或手动进入该App进行业务操作",Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+
 
     /**
      *  启动应用的设置

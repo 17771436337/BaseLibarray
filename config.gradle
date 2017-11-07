@@ -34,6 +34,11 @@ ext {
             // ------------- 首页底部标签栏 -------------
             tabviewlibrary            :'com.ycl.tabview.library:tabviewlibrary:1.0',
 
+            ///HttpURLConnection作为网络层
+            nohttp                    :'com.yanzhenjie.nohttp:nohttp:1.1.4',
+            //OkHttp
+            okhttp                    : 'com.yanzhenjie.nohttp:okhttp:1.1.4',
+
     ]
 
 
