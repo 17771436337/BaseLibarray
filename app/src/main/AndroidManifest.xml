@@ -14,15 +14,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainSpaceActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
 <activity android:name=".NetworkingAcitivity"
-    android:label="无网状态"> <intent-filter>
-    <action android:name="android.intent.action.MAIN" />
-
-    <category android:name="android.intent.category.LAUNCHER" />
-</intent-filter></activity>
+    android:label="无网状态"/>
     </application>
 
 </manifest>

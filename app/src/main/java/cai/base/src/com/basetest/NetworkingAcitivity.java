@@ -44,6 +44,6 @@ public class NetworkingAcitivity extends BaseTitleActivity{
 
     @Event(value = R.id.setting,type = View.OnClickListener.class)
     private void startSetting(View v){
-        AppUtils.getInstance().startAppSettings(this);
+        AppUtils.getInstance().startAppNetSettings(this);
     }
 }

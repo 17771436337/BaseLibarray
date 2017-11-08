@@ -30,6 +30,9 @@ dependencies {
     compile rootProject.ext.dependencies.tabviewlibrary
     //上拉加载下拉刷新
     compile project(rootProject.ext.libs.xrecyclerview)
+    //GSON
+    compile rootProject.ext.dependencies.gson
+    compile rootProject.ext.dependencies.fastjson
     // //工具，网络请求，数据库框架
     compile project(rootProject.ext.libs.xUtils)
 }

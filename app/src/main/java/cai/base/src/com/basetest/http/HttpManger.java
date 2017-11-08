@@ -81,20 +81,55 @@ public class HttpManger {
      */
     public void Http(String url,HttpMethod method,RequestParams params,BaseCallListener listener){
         if (isNetworkConnected()) {
-            if (!TextUtils.isEmpty(url)) {
-                LogUtil.d("http-url："+url);
-                //设置接口链接
-                params.setUri(url);
-                //为请求添加缓存时间
-                params.setCacheMaxAge(cacheTime);
-                x.http().request(method, params, new BaseCallback(listener));
+            if (params != null) {
+                if (!TextUtils.isEmpty(url) ){
+                    //设置接口链接
+                    params.setUri(url);
+                }else{
+                    if (TextUtils.isEmpty(params.getUri())){
+                        LogUtil.d("http-url：没有接口链接");
+                        return;
+                    }
+                }
+
+            }else{
+               RequestParams data = new RequestParams();
+                if (!TextUtils.isEmpty(url) ){
+                    //设置接口链接
+                    data.setUri(url);
+                }else{
+                    LogUtil.d("http-url：没有接口链接");
+                    return;
+                }
             }
-        }else{//没有联网
-x.app().startActivity(new Intent(x.app(), NetworkingAcitivity.class));
+            //为请求添加缓存时间
+            params.setCacheMaxAge(cacheTime);
+            x.http().request(method, params, new BaseCallback(listener));
+
         }
-
-
     }
+
+    /**
+     * 下载
+     * @param url
+     * 下载链接
+     * @param path
+     * 保存地址
+     * @param listener
+     * 回调
+     */
+    public void httpDownload(String url,String path,Callback.ProgressCallback<File> listener){
+        if (isNetworkConnected()) {
+            RequestParams params = new RequestParams(url);
+            params.setSaveFilePath(path);
+            //自动为文件命名
+            params.setAutoRename(true);
+            x.http().post(params, listener);
+        }
+    }
+
+
+
 
     /**
      * 判断是否联网
@@ -107,26 +142,16 @@ x.app().startActivity(new Intent(x.app(), NetworkingAcitivity.class));
         if (mNetworkInfo != null) {
             return mNetworkInfo.isAvailable();
         }
+
+        //当未联网时跳转界面
+        Intent it = new Intent(x.app(), NetworkingAcitivity.class);
+        it.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        x.app().startActivity(it);
         return false;
     }
 
 
-    /**
-     * 下载
-     * @param url
-     * 下载链接
-     * @param path
-     * 保存地址
-     * @param listener
-     * 回调
-     */
-    public void httpDownload(String url,String path,Callback.ProgressCallback<File> listener){
-        RequestParams params = new RequestParams(url);
-        params.setSaveFilePath(path);
-        //自动为文件命名
-        params.setAutoRename(true);
-        x.http().post(params, listener);
-    }
+
 
 
 

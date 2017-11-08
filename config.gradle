@@ -5,8 +5,8 @@ ext {
             buildToolsVersion: "26.0.0",
             minSdkVersion    : 17,
             targetSdkVersion : 26,
-            versionCode      : 2,
-            versionName      : "1.1.1.2",
+            versionCode      : 1,
+            versionName      : "2017.11.8",
 
     ]
 
@@ -19,9 +19,6 @@ ext {
     dependencies = [
 
             // ------------- Android -------------
-//            appcompatV7 : 'com.android.support:appcompat-v7:23.4.0',
-//            recyclerview :'com.android.support:recyclerview-v7:26.+',
-//            design : 'com.android.support:design:26.+',
             appcompatV7           : "com.android.support:appcompat-v7:${dependVersion.support}",
             design                : "com.android.support:design:${dependVersion.support}",
             junit                 : "junit:junit:4.12",
@@ -34,10 +31,11 @@ ext {
             // ------------- 首页底部标签栏 -------------
             tabviewlibrary            :'com.ycl.tabview.library:tabviewlibrary:1.0',
 
-            ///HttpURLConnection作为网络层
-            nohttp                    :'com.yanzhenjie.nohttp:nohttp:1.1.4',
-            //OkHttp
-            okhttp                    : 'com.yanzhenjie.nohttp:okhttp:1.1.4',
+            //------------- GSON -------------
+            fastjson                  :'com.alibaba:fastjson:1.2.40',
+            gson                      : 'com.google.code.gson:gson:2.8.2',
+
+
 
     ]
 

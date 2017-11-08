@@ -85,6 +85,11 @@ public class AppUtils {
     }
 
 
+    public  void  startAppNetSettings(Context context){
+        Intent intent =  new Intent(Settings.ACTION_AIRPLANE_MODE_SETTINGS);
+        context.startActivity(intent);
+    }
+
     /**
      * 启动应用的音频播放器
      * @param context
