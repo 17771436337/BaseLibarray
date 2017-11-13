@@ -1,4 +1,4 @@
-package cai.base.src.com.basetest.db;
+package cai.base.src.com.basetest.test;
 
 import org.xutils.db.annotation.Column;
 import org.xutils.db.annotation.Table;

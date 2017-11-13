@@ -4,6 +4,7 @@ import cai.base.src.com.basetest.base.HolderView;
 
 /**
  * Created by Administrator on 2017/11/13.
+ * 适配器使用的对应的接口
  */
 
 public interface BaseAdapterInterfaces{

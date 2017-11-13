@@ -17,6 +17,7 @@ import cai.base.src.com.basetest.base.activitys.BasicsActivity;
 
 /**
  * Created by Administrator on 2017/10/23.
+ * 碎片抽象化的基类
  */
 
 public abstract class BasicsFragment extends Fragment {

@@ -12,6 +12,7 @@ import cai.base.src.com.basetest.utils.AppUtils;
 
 /**
  * Created by Administrator on 2017/11/7.
+ * 当没有网络时会出现的界面
  */
 
 public class NetworkingAcitivity extends BaseTitleActivity{

@@ -19,18 +19,18 @@ import cai.base.src.com.basetest.config.CommonConfig;
  * Created by Administrator on 2017/10/28.
  */
 
-public class App extends Application {
+public class AppManger extends Application {
 
-
+    private DbManager db;
 
     public DbManager getDb() {
         return db;
     }
 
-    DbManager db;
-    public static App instances;
 
-    public static App getInstances() {
+    private static AppManger instances;
+
+    public static AppManger getInstances() {
         return instances;
     }
 

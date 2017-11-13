@@ -1,4 +1,4 @@
-package cai.base.src.com.basetest.http;
+package cai.base.src.com.basetest.manger;
 
 import android.content.Context;
 import android.content.Intent;

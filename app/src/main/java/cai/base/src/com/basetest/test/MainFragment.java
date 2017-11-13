@@ -12,10 +12,9 @@ import java.util.ArrayList;
 import cai.base.src.com.basetest.R;
 import cai.base.src.com.basetest.base.HolderView;
 import cai.base.src.com.basetest.base.fragments.BaseListFragment;
-import cai.base.src.com.basetest.db.TestDb;
-import cai.base.src.com.basetest.http.HttpManger;
+import cai.base.src.com.basetest.manger.HttpManger;
 import cai.base.src.com.basetest.interfaces.BaseCallListener;
-import cai.base.src.com.basetest.manger.App;
+import cai.base.src.com.basetest.manger.AppManger;
 
 /**
  * Created by Administrator on 2017/10/23.
@@ -103,7 +102,7 @@ public class MainFragment extends BaseListFragment{
         test.setDate(System.currentTimeMillis());
         test.setText("测试");
         try {
-            App.getInstances().getDb().save(test);
+            AppManger.getInstances().getDb().save(test);
         } catch (DbException e) {
             e.printStackTrace();
         }

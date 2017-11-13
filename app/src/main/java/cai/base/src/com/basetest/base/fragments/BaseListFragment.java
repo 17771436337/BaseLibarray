@@ -38,13 +38,11 @@ public abstract class BaseListFragment<T> extends BasicsFragment implements XRec
      */
     private int mListType = 0;
     /**上拉下拉加载布局控件*/
-    protected XRecyclerView mRecyclerView;
+    private XRecyclerView mRecyclerView;
     /**适配器*/
     private BaseAdapter  mAdapter;
     /**数据列表*/
     private ArrayList<T> list;
-
-
     /**
      * 排列方式默认垂直
      */
@@ -54,9 +52,15 @@ public abstract class BaseListFragment<T> extends BasicsFragment implements XRec
     /** 是否允许上拉加载(默认允许)*/
     private boolean isRefresh = true;
 
+    /**返回对应的RecyclerView*/
+    public XRecyclerView getRecyclerView() {
+        return mRecyclerView;
+    }
 
-
-
+    /**返回RecyclerView对应的适配器*/
+    public BaseAdapter getAdapter() {
+        return mAdapter;
+    }
 
     /**"上拉刷新数据*/
     protected abstract void onRefreshData();
@@ -141,9 +145,6 @@ public abstract class BaseListFragment<T> extends BasicsFragment implements XRec
 
     }
 
-
-
-
     /**适配器*/
     public class BaseAdapter extends RecyclerView.Adapter<HolderView>{
 
@@ -191,10 +192,6 @@ public abstract class BaseListFragment<T> extends BasicsFragment implements XRec
 
 
     }
-
-
-
-
 
 
     /**

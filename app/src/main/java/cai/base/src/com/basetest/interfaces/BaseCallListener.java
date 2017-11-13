@@ -7,9 +7,12 @@ package cai.base.src.com.basetest.interfaces;
  */
 
 public interface BaseCallListener {
+    /**数据请求成功*/
     public void onSuccess(String pResponse);
 
+    /**数据请求失败*/
     public void onFail(String pResponse);
 
+    /**数据请求接口关闭*/
     public void close();
 }

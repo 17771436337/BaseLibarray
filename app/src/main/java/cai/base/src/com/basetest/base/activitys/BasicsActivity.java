@@ -1,22 +1,21 @@
 package cai.base.src.com.basetest.base.activitys;
 
-import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.TextView;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Toast;
 
 import org.xutils.x;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-
 import cai.base.src.com.basetest.R;
-import cai.base.src.com.basetest.annotation.FindById;
 import cai.base.src.com.basetest.manger.ActivityManger;
+import cai.base.src.com.basetest.utils.StatusBarCompat;
 
 /**
  * Created by Administrator on 2017/9/25.
@@ -28,10 +27,10 @@ public abstract class BasicsActivity extends AppCompatActivity{
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         ActivityManger.getAppManager().addActivity(this);
         initView(savedInstanceState);
         x.view().inject(this);
-
     }
 
 
@@ -50,14 +49,6 @@ public abstract class BasicsActivity extends AppCompatActivity{
 
     //-------------------------------------------------------------------自实现相关逻辑代码----------------------------------------------------------------
 
-    /***
-     * Loading的显示
-     */
-    protected void showLoading(boolean isLoading){
-        if (isLoading){//数据加载Load显示
-            Toast.makeText(this,"测试",Toast.LENGTH_SHORT).show();
-        }
-    }
 
     protected abstract void initView(Bundle savedInstanceState);
 

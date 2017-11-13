@@ -58,14 +58,10 @@ public abstract class BaseTitleActivity extends BasicsActivity implements BaseVi
     }
 
 
-    @Override
-    public int getContentViewId() {
-        return R.layout.layout_base_activity;
-    }
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        setContentView(getContentViewId());
+        setContentView(R.layout.layout_base_activity);
         setTableView();
         init();
     }
