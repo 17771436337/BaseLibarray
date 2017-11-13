@@ -12,6 +12,7 @@ import com.ycl.tabview.library.TabViewChild;
 import java.util.List;
 
 import cai.base.src.com.basetest.R;
+import cai.base.src.com.basetest.interfaces.BaseViewInterrfaces;
 import cai.base.src.com.basetest.manger.ActivityManger;
 
 
@@ -19,14 +20,19 @@ import cai.base.src.com.basetest.manger.ActivityManger;
  * Created by Administrator on 2017/10/24.
  */
 
-public abstract class BaseHomeActivity extends BasicsActivity {
+public abstract class BaseHomeActivity extends BasicsActivity implements BaseViewInterrfaces {
     TabView tabView;
 
     private long exitTime;
 
     @Override
+    public int getContentViewId() {
+        return R.layout.activity_base_home;
+    }
+
+    @Override
     protected void initView(Bundle savedInstanceState) {
-        setContentView(R.layout.activity_base_home);
+        setContentView(getContentViewId());
 
         tabView= (TabView) findViewById(R.id.tabView);
         //start add data
@@ -40,6 +46,8 @@ public abstract class BaseHomeActivity extends BasicsActivity {
                 onTabClick(position);
             }
         });
+
+        init();
 
     }
 

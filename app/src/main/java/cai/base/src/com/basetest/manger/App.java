@@ -6,7 +6,6 @@ import android.util.Log;
 import org.xutils.BuildConfig;
 import org.xutils.DbManager;
 import org.xutils.db.table.TableEntity;
-import org.xutils.ex.DbException;
 import org.xutils.x;
 
 import java.io.File;
@@ -14,8 +13,7 @@ import java.io.File;
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLSession;
 
-import cai.base.src.com.basetest.CommonConfig;
-import cai.base.src.com.basetest.db.TestDb;
+import cai.base.src.com.basetest.config.CommonConfig;
 
 /**
  * Created by Administrator on 2017/10/28.
@@ -30,11 +28,16 @@ public class App extends Application {
     }
 
     DbManager db;
+    public static App instances;
 
+    public static App getInstances() {
+        return instances;
+    }
 
     @Override
     public void onCreate() {
         super.onCreate();
+        instances = this;
         initXUtils();
         dbInit();
 

@@ -14,15 +14,21 @@ import android.widget.Toast;
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
+import org.xutils.common.util.LogUtil;
+
 import java.util.ArrayList;
 
 import cai.base.src.com.basetest.R;
+import cai.base.src.com.basetest.base.HolderView;
+import cai.base.src.com.basetest.interfaces.BaseAdapterInterfaces;
+import cai.base.src.com.basetest.interfaces.BaseAdapterOnClickInterfaces;
+import cai.base.src.com.basetest.interfaces.BaseViewInterrfaces;
 
 /**
  * Created by Administrator on 2017/10/23.
  * 列表展示数据
  */
-public abstract class BaseListFragment<T> extends BasicsFragment implements XRecyclerView.LoadingListener {
+public abstract class BaseListFragment<T> extends BasicsFragment implements XRecyclerView.LoadingListener ,BaseAdapterInterfaces,BaseAdapterOnClickInterfaces ,BaseViewInterrfaces {
     /**
      * grid布局与瀑布流布局默认行数
      */
@@ -34,9 +40,10 @@ public abstract class BaseListFragment<T> extends BasicsFragment implements XRec
     /**上拉下拉加载布局控件*/
     protected XRecyclerView mRecyclerView;
     /**适配器*/
-    private ListAdapter  mAdapter;
+    private BaseAdapter  mAdapter;
     /**数据列表*/
     private ArrayList<T> list;
+
 
     /**
      * 排列方式默认垂直
@@ -49,11 +56,6 @@ public abstract class BaseListFragment<T> extends BasicsFragment implements XRec
 
 
 
-    /**对应的Item的单机事件*/
-    protected abstract void onItemClick(View view,RecyclerView.ViewHolder holder,int position);
-
-    /**对应的Item的长按事件*/
-    protected abstract boolean onItemLongClick(View view,RecyclerView.ViewHolder holder,int position);
 
 
     /**"上拉刷新数据*/
@@ -62,20 +64,25 @@ public abstract class BaseListFragment<T> extends BasicsFragment implements XRec
     /**下拉加载数据*/
     protected abstract void onLoadMoreData();
 
+    /**显示时不需要该布局*/
+    @Override
+    public int getContentViewId() {
+        return R.layout.fragment_base_list;
+    }
 
     @Override
     protected void initView(LayoutInflater inflater, Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.fragment_base_list,null);
+        mView = inflater.inflate(getContentViewId(),null);
 
         mRecyclerView = mView.findViewById(R.id.recyclerview);
         list = new ArrayList<>();
-        mAdapter = new ListAdapter();
+        mAdapter = new BaseAdapter();
         chooseListType(mListType,mIsVertical);
         mRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
         mRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.BallRotate);
         setLoadMoreAndRefresh(isLoadMore,isRefresh);
-
         mRecyclerView.setLoadingListener(this);
+        init();
 
     }
 
@@ -122,8 +129,6 @@ public abstract class BaseListFragment<T> extends BasicsFragment implements XRec
 
     @Override
     public void onLoadMore() {
-
-
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -140,19 +145,23 @@ public abstract class BaseListFragment<T> extends BasicsFragment implements XRec
 
 
     /**适配器*/
-    public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListViewHolder>{
+    public class BaseAdapter extends RecyclerView.Adapter<HolderView>{
 
         @Override
-        public ListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(context).inflate(R.layout.item_test_text, parent, false);
-            ListViewHolder holder = new ListViewHolder(view);
+        public HolderView onCreateViewHolder(ViewGroup parent, int viewType) {
+            HolderView holder =  HolderView.get(context,parent,getItemLayoutId(viewType));
             return holder;
         }
 
         @Override
-        public void onBindViewHolder(final ListViewHolder holder, final int position) {
+        public int getItemViewType(int position) {
+            return position;
+        }
 
-
+        @Override
+        public void onBindViewHolder(final HolderView holder, final int position) {
+            bindData(holder,position);
+            //---------------------------------------------------------------
             /**列表的单机事件*/
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -172,17 +181,15 @@ public abstract class BaseListFragment<T> extends BasicsFragment implements XRec
         }
         @Override
         public int getItemCount() {
-            return list.size();
+            if (list != null) {
+                return list.size();
+            }else{
+                LogUtil.d("BaseListFragment：列表为空");
+                return 0;
+            }
         }
 
-       class ListViewHolder extends RecyclerView.ViewHolder{
-           View itemView ;
 
-           public ListViewHolder(View itemView) {
-               super(itemView);
-               this.itemView = itemView;
-           }
-       }
     }
 
 

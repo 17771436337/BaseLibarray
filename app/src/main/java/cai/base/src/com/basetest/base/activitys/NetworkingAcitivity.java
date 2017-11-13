@@ -1,4 +1,4 @@
-package cai.base.src.com.basetest;
+package cai.base.src.com.basetest.base.activitys;
 
 import android.os.CancellationSignal;
 import android.view.View;
@@ -6,6 +6,7 @@ import android.view.View;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 
+import cai.base.src.com.basetest.R;
 import cai.base.src.com.basetest.base.activitys.BaseTitleActivity;
 import cai.base.src.com.basetest.utils.AppUtils;
 
@@ -33,14 +34,15 @@ public class NetworkingAcitivity extends BaseTitleActivity{
     }
 
     @Override
-    protected int getContentViewId() {
-        return R.layout.activity_no_network;
+    public void init() {
+
     }
 
     @Override
-    protected void initData() {
-
+    public int getContentViewId() {
+        return R.layout.activity_no_network;
     }
+
 
     @Event(value = R.id.setting,type = View.OnClickListener.class)
     private void startSetting(View v){

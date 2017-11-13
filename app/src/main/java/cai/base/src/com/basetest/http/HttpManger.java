@@ -6,10 +6,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.text.TextUtils;
 
-
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
 import org.xutils.common.Callback;
 import org.xutils.common.util.LogUtil;
 import org.xutils.ex.HttpException;
@@ -18,11 +14,9 @@ import org.xutils.http.RequestParams;
 import org.xutils.x;
 
 import java.io.File;
-import java.util.List;
 
-import cai.base.src.com.basetest.NetworkingAcitivity;
-import cai.base.src.com.basetest.TestModel;
-import cai.base.src.com.basetest.base.model.CommonBean;
+import cai.base.src.com.basetest.base.activitys.NetworkingAcitivity;
+import cai.base.src.com.basetest.interfaces.BaseCallListener;
 
 
 /**
@@ -149,23 +143,6 @@ public class HttpManger {
         it.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         x.app().startActivity(it);
         return false;
-    }
-
-
-
-
-
-
-
-    /**
-     * 重新接口回调，方便设置缓存数据
-     */
-    public interface BaseCallListener{
-        public void onSuccess(String pResponse);
-
-        public void onFail(String pResponse);
-
-        public void close();
     }
 
 

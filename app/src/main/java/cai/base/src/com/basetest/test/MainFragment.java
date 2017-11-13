@@ -1,10 +1,7 @@
-package cai.base.src.com.basetest;
+package cai.base.src.com.basetest.test;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Toast;
-
-import com.google.gson.Gson;
 
 import org.xutils.ex.DbException;
 import org.xutils.http.RequestParams;
@@ -12,11 +9,12 @@ import org.xutils.x;
 
 import java.util.ArrayList;
 
+import cai.base.src.com.basetest.R;
+import cai.base.src.com.basetest.base.HolderView;
 import cai.base.src.com.basetest.base.fragments.BaseListFragment;
-import cai.base.src.com.basetest.base.fragments.BaseSpaceFragment;
-import cai.base.src.com.basetest.base.model.CommonBean;
 import cai.base.src.com.basetest.db.TestDb;
 import cai.base.src.com.basetest.http.HttpManger;
+import cai.base.src.com.basetest.interfaces.BaseCallListener;
 import cai.base.src.com.basetest.manger.App;
 
 /**
@@ -26,10 +24,28 @@ public class MainFragment extends BaseListFragment{
     ArrayList<String> list ;
 
     @Override
-    protected void init() {
-//        Log.i("test","测试");
+    public void init() {
         setLoadMoreAndRefresh(true,true);
         list = new ArrayList<>();
+        list.add("测试");
+        list.add("测试");
+        list.add("测试");
+        list.add("测试");
+        list.add("测试");
+        list.add("测试");
+        list.add("测试");
+        list.add("测试");
+        list.add("测试");
+        list.add("测试");
+        list.add("测试");
+        list.add("测试");
+        list.add("测试");
+        list.add("测试");
+        list.add("测试");
+        list.add("测试");
+        list.add("测试");
+        list.add("测试");
+        list.add("测试");
         list.add("测试");
         list.add("测试");
         list.add("测试");
@@ -41,13 +57,13 @@ public class MainFragment extends BaseListFragment{
 
 
     @Override
-    protected void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
+    public void onItemClick(View view, HolderView holder, int position) {
         Toast.makeText(context,"单机",Toast.LENGTH_SHORT).show();
 
     }
 
     @Override
-    protected boolean onItemLongClick(View view, RecyclerView.ViewHolder holder, int position) {
+    public boolean onItemLongClick(View view, HolderView holder, int position) {
         Toast.makeText(context,"长按",Toast.LENGTH_SHORT).show();
         return true;
     }
@@ -60,9 +76,7 @@ public class MainFragment extends BaseListFragment{
         RequestParams params = new RequestParams("http://v.juhe.cn/toutiao/index");
         params.addParameter("key","2cf5722b519719df3dea59880c300489");
         params.addBodyParameter("type","top");
-        HttpManger.getInstance().post(null, params, new HttpManger.BaseCallListener(){
-
-
+        HttpManger.getInstance().post(null, params, new BaseCallListener(){
             @Override
             public void onSuccess(String  pResponse) {
                 Toast.makeText(x.app(),"sdasdas",Toast.LENGTH_SHORT).show();
@@ -76,6 +90,7 @@ public class MainFragment extends BaseListFragment{
             @Override
             public void close() {
                 Toast.makeText(x.app(),"接口关闭",Toast.LENGTH_SHORT).show();
+
             }
         });
     }
@@ -87,12 +102,32 @@ public class MainFragment extends BaseListFragment{
         TestDb test = new TestDb();
         test.setDate(System.currentTimeMillis());
         test.setText("测试");
-//        try {
-//            App.getInstance().getDb().save(test);
-//        } catch (DbException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            App.getInstances().getDb().save(test);
+        } catch (DbException e) {
+            e.printStackTrace();
+        }
 
     }
 
+
+    @Override
+    public void bindData(HolderView holder, int position) {
+        if (position % 2 == 0){
+            holder.setText(R.id.text_test,"测试数据："+position);
+
+        }
+
+    }
+
+    @Override
+    public int getItemLayoutId(int viewType) {
+        if (viewType % 2 == 0){
+            return R.layout.item_test_text;
+
+        }else{
+            return R.layout.layout_base_title;
+    }
+
+    }
 }

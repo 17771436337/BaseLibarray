@@ -9,12 +9,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import cai.base.src.com.basetest.R;
+import cai.base.src.com.basetest.interfaces.BaseViewInterrfaces;
 
 /**
  * Created by Administrator on 2017/10/24.
  */
 
-public abstract class BaseTitleActivity extends BasicsActivity {
+public abstract class BaseTitleActivity extends BasicsActivity implements BaseViewInterrfaces {
 
     /** 标题返回按钮显示 */
     protected abstract boolean isShowBack();
@@ -26,8 +27,6 @@ public abstract class BaseTitleActivity extends BasicsActivity {
      * 返回键监听事件
      */
     protected abstract void onBackClick();
-
-
 
     /**
      * 初始化视图，并且添加对应的标题
@@ -59,14 +58,15 @@ public abstract class BaseTitleActivity extends BasicsActivity {
     }
 
 
-
-    /**布局ID*/
-    protected abstract int getContentViewId();
-
+    @Override
+    public int getContentViewId() {
+        return R.layout.layout_base_activity;
+    }
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        setContentView(R.layout.layout_base_activity);
+        setContentView(getContentViewId());
         setTableView();
+        init();
     }
 }

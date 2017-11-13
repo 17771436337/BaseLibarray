@@ -46,7 +46,6 @@ public abstract class BasicsFragment extends Fragment {
         context = getActivity();
         initView(inflater,savedInstanceState);
         x.view().inject(this, inflater, container);
-        init();
         return mView;
     }
 
@@ -73,9 +72,6 @@ public abstract class BasicsFragment extends Fragment {
 
 
     //-------------------------------------------------------------------自实现相关逻辑代码----------------------------------------------------------------
-
-    /**初始化*/
-    protected abstract void init();
 
     /**初始化布局*/
     protected abstract void initView(LayoutInflater inflater,Bundle savedInstanceState);
@@ -126,19 +122,5 @@ public abstract class BasicsFragment extends Fragment {
 
 
     //-------------------------------------------------------------------反射逻辑处理代码----------------------------------------------------------------
-
-//    /**注解内容获取*/
-//    private void getAnnotation(){
-//        if (getClass().isAnnotationPresent(FragmentInject.class)){//判断是否为当前的注解方式
-//            //获取到注解类的实例化对象
-//            FragmentInject annotation = getClass().getAnnotation(FragmentInject.class);
-//            //获取到对应的布局文件id
-//            contentViewId = annotation.contentViewId();
-//            //获取到设对应的Loading显示判断
-//            isLoading = annotation.isLoading();
-//        }else {//否则抛出异常
-//            throw new RuntimeException("Class must add annotations of FragmentInject.class");
-//        }
-//    }
 
 }

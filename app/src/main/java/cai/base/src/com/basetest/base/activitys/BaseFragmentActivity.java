@@ -4,19 +4,20 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.KeyEvent;
 
+import cai.base.src.com.basetest.interfaces.BaseViewInterrfaces;
+
 /**
  * Created by Administrator on 2017/10/24.
  */
 
-public abstract class BaseFragmentActivity extends BasicsActivity {
+public abstract class BaseFragmentActivity extends BasicsActivity  implements BaseViewInterrfaces {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
         setContentView(getContentViewId());
+        init();
     }
 
-    /**布局ID*/
-    protected abstract int getContentViewId();
 
     /**
      *  添加Fragment

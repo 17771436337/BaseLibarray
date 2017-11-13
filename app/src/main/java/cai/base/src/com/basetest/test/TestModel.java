@@ -1,4 +1,4 @@
-package cai.base.src.com.basetest;
+package cai.base.src.com.basetest.test;
 
 import java.util.List;
 

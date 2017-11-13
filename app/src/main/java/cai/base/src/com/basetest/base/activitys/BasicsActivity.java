@@ -23,8 +23,6 @@ import cai.base.src.com.basetest.manger.ActivityManger;
  */
 public abstract class BasicsActivity extends AppCompatActivity{
 
-
-
     //-------------------------------------------------------------------周期相关代码----------------------------------------------------------------
 
     @Override
@@ -33,7 +31,7 @@ public abstract class BasicsActivity extends AppCompatActivity{
         ActivityManger.getAppManager().addActivity(this);
         initView(savedInstanceState);
         x.view().inject(this);
-        initData();
+
     }
 
 
@@ -60,11 +58,6 @@ public abstract class BasicsActivity extends AppCompatActivity{
             Toast.makeText(this,"测试",Toast.LENGTH_SHORT).show();
         }
     }
-
-    /**
-     * 初始化数据
-     */
-    protected abstract void initData();
 
     protected abstract void initView(Bundle savedInstanceState);
 
@@ -127,68 +120,4 @@ public abstract class BasicsActivity extends AppCompatActivity{
         startActivityForResult(it, requestCode);
     }
 
-
-
-    //-------------------------------------------------------------------反射逻辑处理代码----------------------------------------------------------------
-
-    /**
-     * 设置对应的布局控件初始化
-     * @param activity
-     */
-    public  void inject(Activity activity){
-        //获取activity对象的实际类别
-        Class<? extends Activity> atyCls = activity.getClass();
-        //获取类自定义的成员，不包括继承自父类的成员
-        Field[] fields = atyCls.getDeclaredFields();
-        for(Field field:fields){
-            //成员属性是否有ViewField注解
-            FindById vf = field.getAnnotation(FindById.class);
-            if(vf != null){
-                //通过反射，获取atyCls的findViewById方法
-                try {
-                    int id = vf.ViewId();
-                    //指定方法名 和 参数类别列表（方法重载，需要指定参数详细）
-                    //findViewById是从父类继承来的，所以用getMethod,而不是getDeclaredMethod
-                    Method method = atyCls.getMethod("findViewById",int.class);
-                    //调用方法，指定参数
-//                    Object view = method.invoke(activity,id);
-                    //可访问
-                    field.setAccessible(true);
-                    //给成员属性赋值
-                    field.set(activity,getView(activity,method,vf));
-                } catch (NoSuchMethodException e) {
-                    e.printStackTrace();
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                } catch (InvocationTargetException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-    }
-
-
-    /**
-     * 根据不同的类别进行不同的数据判断
-     * @param activity
-     * @param method
-     * @param vf
-     * @return
-     * @throws InvocationTargetException
-     * @throws IllegalAccessException
-     */
-    private Object getView( Activity activity,Method method,FindById vf) throws InvocationTargetException, IllegalAccessException {
-        int id = vf.ViewId();
-        //调用方法，指定参数
-        try {
-            TextView view = (TextView) method.invoke(activity,id);
-            String str = vf.defaultString();
-            view.setText(str);
-            return view;
-        } catch (Exception e){
-            return  method.invoke(activity,id);
-        }
-
-    }
 }

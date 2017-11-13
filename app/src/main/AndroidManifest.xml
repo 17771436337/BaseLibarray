@@ -13,7 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainSpaceActivity">
+        <activity android:name=".test.MainSpaceActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
 
-<activity android:name=".NetworkingAcitivity"
+<activity android:name=".base.activitys.NetworkingAcitivity"
     android:label="无网状态"/>
     </application>
 

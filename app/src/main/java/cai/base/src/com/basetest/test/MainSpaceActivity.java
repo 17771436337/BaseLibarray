@@ -1,30 +1,16 @@
-package cai.base.src.com.basetest;
+package cai.base.src.com.basetest.test;
 
-
-import android.widget.Toast;
 
 import com.ycl.tabview.library.TabViewChild;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import cai.base.src.com.basetest.base.activitys.BaseFragmentActivity;
+import cai.base.src.com.basetest.R;
 import cai.base.src.com.basetest.base.activitys.BaseHomeActivity;
+import cai.base.src.com.basetest.test.MainFragment;
 
 public class MainSpaceActivity extends BaseHomeActivity {
-
-
-    @Override
-    protected void initData() {
-//        addFragment(R.id.content,new MainFragment());
-
-//        //动态加载碎片的五个步骤，按钮按下时替换原来的碎片布局
-//        FragmentManager fragmentManager = getSupportFragmentManager();
-//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//        fragmentTransaction.replace(R.id.content,new MainFragment());
-//        fragmentTransaction.commit();
-    }
-
 
 
     @Override
@@ -44,6 +30,11 @@ public class MainSpaceActivity extends BaseHomeActivity {
 
     @Override
     protected void onTabClick(int position) {
+
+    }
+
+    @Override
+    public void init() {
 
     }
 }
