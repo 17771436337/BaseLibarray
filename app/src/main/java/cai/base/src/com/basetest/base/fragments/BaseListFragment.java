@@ -17,8 +17,10 @@ import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import org.xutils.common.util.LogUtil;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import cai.base.src.com.basetest.R;
+import cai.base.src.com.basetest.base.CommonAdapter;
 import cai.base.src.com.basetest.base.HolderView;
 import cai.base.src.com.basetest.interfaces.BaseAdapterInterfaces;
 import cai.base.src.com.basetest.interfaces.BaseAdapterOnClickInterfaces;
@@ -40,9 +42,9 @@ public abstract class BaseListFragment<T> extends BasicsFragment implements XRec
     /**上拉下拉加载布局控件*/
     private XRecyclerView mRecyclerView;
     /**适配器*/
-    private BaseAdapter  mAdapter;
+    private CommonAdapter<T> mAdapter;
     /**数据列表*/
-    private ArrayList<T> list;
+    private List<T> list;
     /**
      * 排列方式默认垂直
      */
@@ -58,7 +60,7 @@ public abstract class BaseListFragment<T> extends BasicsFragment implements XRec
     }
 
     /**返回RecyclerView对应的适配器*/
-    public BaseAdapter getAdapter() {
+    public CommonAdapter<T> getAdapter() {
         return mAdapter;
     }
 
@@ -80,7 +82,7 @@ public abstract class BaseListFragment<T> extends BasicsFragment implements XRec
 
         mRecyclerView = mView.findViewById(R.id.recyclerview);
         list = new ArrayList<>();
-        mAdapter = new BaseAdapter();
+        mAdapter = new CommonAdapter<>(list,context,this,this);
         chooseListType(mListType,mIsVertical);
         mRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
         mRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.BallRotate);
@@ -142,54 +144,6 @@ public abstract class BaseListFragment<T> extends BasicsFragment implements XRec
 
             }
         },1000);
-
-    }
-
-    /**适配器*/
-    public class BaseAdapter extends RecyclerView.Adapter<HolderView>{
-
-        @Override
-        public HolderView onCreateViewHolder(ViewGroup parent, int viewType) {
-            HolderView holder =  HolderView.get(context,parent,getItemLayoutId(viewType));
-            return holder;
-        }
-
-        @Override
-        public int getItemViewType(int position) {
-            return position;
-        }
-
-        @Override
-        public void onBindViewHolder(final HolderView holder, final int position) {
-            bindData(holder,position);
-            //---------------------------------------------------------------
-            /**列表的单机事件*/
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    onItemClick(v,holder,position);
-                }
-            });
-
-            /**列表的长按事件*/
-            holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-                    return onItemLongClick(v,holder,position);
-                }
-            });
-
-        }
-        @Override
-        public int getItemCount() {
-            if (list != null) {
-                return list.size();
-            }else{
-                LogUtil.d("BaseListFragment：列表为空");
-                return 0;
-            }
-        }
-
 
     }
 

@@ -18,20 +18,28 @@ import cai.base.src.com.basetest.interfaces.BaseViewInterrfaces;
  * 通用适配器
  */
 
-public abstract class CommonAdapter<T> extends RecyclerView.Adapter<HolderView> implements BaseAdapterOnClickInterfaces,BaseAdapterInterfaces {
+public class CommonAdapter<T> extends RecyclerView.Adapter<HolderView>{
 
+    /**数据实现*/
     private List<T> data;
 
+    /**环境配置*/
     public Context context;
 
-    public CommonAdapter(List<T> data, Context context) {
+    BaseAdapterOnClickInterfaces mOnClick;
+
+    BaseAdapterInterfaces mAdapterInterfaces;
+
+    public CommonAdapter(List<T> data, Context context, BaseAdapterOnClickInterfaces mOnClick, BaseAdapterInterfaces mAdapterInterfaces) {
         this.data = data;
         this.context = context;
+        this.mOnClick = mOnClick;
+        this.mAdapterInterfaces = mAdapterInterfaces;
     }
 
     @Override
     public HolderView onCreateViewHolder(ViewGroup parent, int viewType) {
-        return HolderView.get(context,parent,getItemLayoutId(viewType));
+        return HolderView.get(context,parent,mAdapterInterfaces.getItemLayoutId(viewType));
     }
 
     @Override
@@ -42,13 +50,13 @@ public abstract class CommonAdapter<T> extends RecyclerView.Adapter<HolderView> 
 
     @Override
     public void onBindViewHolder(final HolderView holder, final int position) {
-        bindData(holder,position);
+        mAdapterInterfaces.bindData(holder,position);
         //---------------------------------------------------------------
         /**列表的单机事件*/
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onItemClick(v,holder,position);
+                mOnClick.onItemClick(v,holder,position);
             }
         });
 
@@ -56,7 +64,7 @@ public abstract class CommonAdapter<T> extends RecyclerView.Adapter<HolderView> 
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                return onItemLongClick(v,holder,position);
+                return mOnClick.onItemLongClick(v,holder,position);
             }
         });
 
