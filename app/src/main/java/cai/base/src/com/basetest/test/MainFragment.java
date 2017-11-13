@@ -36,20 +36,6 @@ public class MainFragment extends BaseListFragment {
         list.add("测试");
         list.add("测试");
         list.add("测试");
-        list.add("测试");
-        list.add("测试");
-        list.add("测试");
-        list.add("测试");
-        list.add("测试");
-        list.add("测试");
-        list.add("测试");
-        list.add("测试");
-        list.add("测试");
-        list.add("测试");
-        list.add("测试");
-        list.add("测试");
-        list.add("测试");
-        list.add("测试");
 
         addData(list,true);
     }
