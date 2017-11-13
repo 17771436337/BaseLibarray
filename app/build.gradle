@@ -24,15 +24,5 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile rootProject.ext.dependencies.constraint
-    testCompile rootProject.ext.dependencies.junit
-    //首页底部标签栏
-    compile rootProject.ext.dependencies.tabviewlibrary
-    //上拉加载下拉刷新
-    compile project(rootProject.ext.libs.xrecyclerview)
-    //GSON
-    compile rootProject.ext.dependencies.gson
-    compile rootProject.ext.dependencies.fastjson
-    // //工具，网络请求，数据库框架
-    compile project(rootProject.ext.libs.xUtils)
+    compile project(rootProject.ext.libs.base)
 }

@@ -2,13 +2,14 @@ package cai.base.src.com.basetest.test;
 
 import java.util.List;
 
-import cai.base.src.com.basetest.base.model.CommonBean;
+import cai.test.com.base.base.model.CommonBean;
+
 
 /**
  * Created by Administrator on 2017/11/8.
  */
 
-public class TestModel extends CommonBean{
+public class TestModel extends CommonBean {
 
     /**
      * reason : 成功的返回
