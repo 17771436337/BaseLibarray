@@ -47,6 +47,7 @@ ext {
             xrecyclerview :':xrecyclerview',
             //工具，网络请求，数据库框架
             xUtils        :':xutils',
+            base          :':base'
     ]
 
 

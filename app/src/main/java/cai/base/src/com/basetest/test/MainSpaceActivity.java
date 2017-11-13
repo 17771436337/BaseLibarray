@@ -7,8 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cai.base.src.com.basetest.R;
-import cai.base.src.com.basetest.base.activitys.BaseHomeActivity;
-import cai.base.src.com.basetest.test.MainFragment;
+import cai.test.com.base.base.activitys.BaseHomeActivity;
 
 public class MainSpaceActivity extends BaseHomeActivity {
 

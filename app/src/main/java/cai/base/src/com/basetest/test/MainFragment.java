@@ -10,16 +10,16 @@ import org.xutils.x;
 import java.util.ArrayList;
 
 import cai.base.src.com.basetest.R;
-import cai.base.src.com.basetest.base.HolderView;
-import cai.base.src.com.basetest.base.fragments.BaseListFragment;
-import cai.base.src.com.basetest.manger.HttpManger;
-import cai.base.src.com.basetest.interfaces.BaseCallListener;
-import cai.base.src.com.basetest.manger.AppManger;
+import cai.test.com.base.base.HolderView;
+import cai.test.com.base.base.fragments.BaseListFragment;
+import cai.test.com.base.interfaces.BaseCallListener;
+import cai.test.com.base.manger.AppManger;
+import cai.test.com.base.manger.HttpManger;
 
 /**
  * Created by Administrator on 2017/10/23.
  */
-public class MainFragment extends BaseListFragment{
+public class MainFragment extends BaseListFragment {
     ArrayList<String> list ;
 
     @Override
@@ -121,12 +121,7 @@ public class MainFragment extends BaseListFragment{
 
     @Override
     public int getItemLayoutId(int viewType) {
-        if (viewType % 2 == 0){
-            return R.layout.item_test_text;
 
-        }else{
-            return R.layout.layout_base_title;
-    }
-
+        return R.layout.item_test_text;
     }
 }
