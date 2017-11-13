@@ -11,9 +11,9 @@ import cai.base.src.com.basetest.base.HolderView;
 
 public interface BaseAdapterOnClickInterfaces {
     /**对应的Item的单机事件*/
-    public void onItemClick(View view, HolderView holder, int position);
+    void onItemClick(View view, HolderView holder, int position);
 
     /**对应的Item的长按事件*/
-    public boolean onItemLongClick(View view,HolderView holder,int position);
+    boolean onItemLongClick(View view,HolderView holder,int position);
 
 }

@@ -11,7 +11,6 @@ import java.util.List;
 
 import cai.base.src.com.basetest.interfaces.BaseAdapterInterfaces;
 import cai.base.src.com.basetest.interfaces.BaseAdapterOnClickInterfaces;
-import cai.base.src.com.basetest.interfaces.BaseViewInterrfaces;
 
 /**
  * Created by Administrator on 2017/11/13.

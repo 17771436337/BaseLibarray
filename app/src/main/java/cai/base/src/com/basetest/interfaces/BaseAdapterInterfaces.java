@@ -1,5 +1,4 @@
 package cai.base.src.com.basetest.interfaces;
-
 import cai.base.src.com.basetest.base.HolderView;
 
 /**
@@ -10,7 +9,7 @@ import cai.base.src.com.basetest.base.HolderView;
 public interface BaseAdapterInterfaces{
 
     /**适配器绑定数据*/
-    public void bindData(HolderView holder, int position);
+    void bindData(HolderView holder, int position);
 
     /**
      * 适配器根据不同的type设置不同的参数
@@ -19,6 +18,6 @@ public interface BaseAdapterInterfaces{
      * @return
      *      对应的布局文件
      */
-    public int getItemLayoutId(int viewType);
+    int getItemLayoutId(int viewType);
 
 }
