@@ -7,6 +7,9 @@ import android.net.NetworkInfo;
 import android.text.TextUtils;
 
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import org.xutils.common.Callback;
 import org.xutils.common.util.LogUtil;
 import org.xutils.ex.HttpException;
@@ -15,8 +18,11 @@ import org.xutils.http.RequestParams;
 import org.xutils.x;
 
 import java.io.File;
+import java.util.List;
 
 import cai.base.src.com.basetest.NetworkingAcitivity;
+import cai.base.src.com.basetest.TestModel;
+import cai.base.src.com.basetest.base.model.CommonBean;
 
 
 /**
@@ -42,18 +48,13 @@ public class HttpManger {
         }
         return  instance;
     }
-
-
-
-
-
     /**
      * http的Get的网络请求（第二次封装）
      * @param url
      * @param params
      * @param listener
      */
-    public void get(String url,RequestParams params,BaseCallListener listener){
+    public void get(String url, RequestParams params, BaseCallListener listener){
       HttpManger.getInstance().Http(url,HttpMethod.GET,params,listener);
 
     }
@@ -64,7 +65,7 @@ public class HttpManger {
      * @param params
      * @param listener
      */
-    public void post(String url,RequestParams params,BaseCallListener listener){
+    public void post(String url, RequestParams params, BaseCallListener listener){
         HttpManger.getInstance().Http(url,HttpMethod.POST,params,listener);
     }
 
@@ -79,7 +80,7 @@ public class HttpManger {
      * @param listener
      * 网络请求参数实体
      */
-    public void Http(String url,HttpMethod method,RequestParams params,BaseCallListener listener){
+    public void Http(String url, HttpMethod method, RequestParams params, BaseCallListener listener){
         if (isNetworkConnected()) {
             if (params != null) {
                 if (!TextUtils.isEmpty(url) ){
@@ -187,7 +188,8 @@ public class HttpManger {
             //返回true：缓存内容被返回，相信本地缓存，返回false：缓存内容被返回，不相信本地缓存，仍然会请求网络
             LogUtil.i("Http-cache："+result);
             this.result = result;
-            listener.onSuccess(this.result);
+            listener.onSuccess( this.result);
+
             return true;
         }
 
@@ -198,7 +200,8 @@ public class HttpManger {
                 this.result = result;
             }
             LogUtil.d("http-result："+result);
-            listener.onSuccess(this.result);
+            listener.onSuccess( this.result);
+
         }
 
         @Override

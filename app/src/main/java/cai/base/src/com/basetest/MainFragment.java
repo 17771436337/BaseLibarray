@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 
+import org.xutils.ex.DbException;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
@@ -13,7 +14,10 @@ import java.util.ArrayList;
 
 import cai.base.src.com.basetest.base.fragments.BaseListFragment;
 import cai.base.src.com.basetest.base.fragments.BaseSpaceFragment;
+import cai.base.src.com.basetest.base.model.CommonBean;
+import cai.base.src.com.basetest.db.TestDb;
 import cai.base.src.com.basetest.http.HttpManger;
+import cai.base.src.com.basetest.manger.App;
 
 /**
  * Created by Administrator on 2017/10/23.
@@ -31,6 +35,7 @@ public class MainFragment extends BaseListFragment{
         list.add("测试");
         list.add("测试");
         list.add("测试");
+
         addData(list,true);
     }
 
@@ -55,19 +60,17 @@ public class MainFragment extends BaseListFragment{
         RequestParams params = new RequestParams("http://v.juhe.cn/toutiao/index");
         params.addParameter("key","2cf5722b519719df3dea59880c300489");
         params.addBodyParameter("type","top");
-        HttpManger.getInstance().post(null, params, new HttpManger.BaseCallListener() {
+        HttpManger.getInstance().post(null, params, new HttpManger.BaseCallListener(){
+
+
             @Override
-            public void onSuccess(String pResponse) {
-
-
-                TestModel model = new Gson().fromJson(pResponse,TestModel.class);
-
-                Toast.makeText(x.app(),model.getResult().getData().get(0).getTitle(),Toast.LENGTH_SHORT).show();
+            public void onSuccess(String  pResponse) {
+                Toast.makeText(x.app(),"sdasdas",Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onFail(String pResponse) {
-                Toast.makeText(x.app(),pResponse,Toast.LENGTH_SHORT).show();
+
             }
 
             @Override
@@ -81,6 +84,15 @@ public class MainFragment extends BaseListFragment{
     protected void onLoadMoreData() {
         addData(list,false);
         Toast.makeText(context,"下拉加载",Toast.LENGTH_SHORT).show();
+        TestDb test = new TestDb();
+        test.setDate(System.currentTimeMillis());
+        test.setText("测试");
+//        try {
+//            App.getInstance().getDb().save(test);
+//        } catch (DbException e) {
+//            e.printStackTrace();
+//        }
+
     }
 
 }
