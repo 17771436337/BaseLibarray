@@ -124,4 +124,6 @@ public class AppUtils {
         intent.setDataAndType(Uri.fromFile(new File(path)), "image/*");
         context.startActivity(intent);
     }
+
+
 }

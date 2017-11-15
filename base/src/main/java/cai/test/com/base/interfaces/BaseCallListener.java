@@ -15,4 +15,5 @@ public interface BaseCallListener {
 
     /**数据请求接口关闭*/
     void close();
+
 }

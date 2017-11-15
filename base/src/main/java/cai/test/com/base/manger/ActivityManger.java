@@ -1,8 +1,14 @@
 package cai.test.com.base.manger;
 
 import android.app.Activity;
+import android.app.Application;
 
+import java.lang.reflect.Field;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Stack;
+
+import cai.test.com.base.base.activitys.BasicsActivity;
 
 /**
  * Created by Administrator on 2017/10/28.
@@ -11,9 +17,49 @@ import java.util.Stack;
 
 public class ActivityManger {
     private static Stack<Activity> activityStack;
+    private HashMap<String, Activity> allActivity;
     private static ActivityManger instance;
-    private ActivityManger() {
 
+    private ActivityManger() {
+        allActivity = new HashMap<>();
+    }
+
+
+    /**
+     * 获取App所有Activity
+     *
+     * @param application
+     */
+    public void getAppAllActivity(Application application) {
+        try {
+            Class<Application> applicationClass = Application.class;
+            Field mLoadedApkField = applicationClass.getDeclaredField("mLoadedApk");
+            mLoadedApkField.setAccessible(true);
+            Object mLoadedApk = mLoadedApkField.get(application);
+            Class<?> mLoadedApkClass = mLoadedApk.getClass();
+            Field mActivityThreadField = mLoadedApkClass.getDeclaredField("mActivityThread");
+            mActivityThreadField.setAccessible(true);
+            Object mActivityThread = mActivityThreadField.get(mLoadedApk);
+            Class<?> mActivityThreadClass = mActivityThread.getClass();
+            Field mActivitiesField = mActivityThreadClass.getDeclaredField("mActivities");
+            mActivitiesField.setAccessible(true);
+            Object mActivities = mActivitiesField.get(mActivityThread);
+            // 注意这里一定写成Map，低版本这里用的是HashMap，高版本用的是ArrayMap
+            if (mActivities instanceof Map) {
+                @SuppressWarnings("unchecked")
+                Map<Object, Object> arrayMap = (Map<Object, Object>) mActivities;
+                for (Map.Entry<Object, Object> entry : arrayMap.entrySet()) {
+                    Object value = entry.getValue();
+                    Class<?> activityClientRecordClass = value.getClass();
+                    Field activityField = activityClientRecordClass.getDeclaredField("activity");
+                    activityField.setAccessible(true);
+                    Activity o =(Activity) activityField.get(value);
+                    allActivity.put(o.getLocalClassName(),o);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
