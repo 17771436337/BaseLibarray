@@ -1,2 +1,2 @@
 # BaseLib
-这是一个基础类的初始化
+感谢Xutils和xrecyclerview的大牛提供的库
