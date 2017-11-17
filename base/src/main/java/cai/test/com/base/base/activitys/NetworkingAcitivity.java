@@ -1,5 +1,7 @@
 package cai.test.com.base.base.activitys;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 
 
@@ -34,6 +36,13 @@ public class NetworkingAcitivity extends BaseTitleActivity{
     @Override
     public void init() {
 
+    }
+
+    /**跳转到无网络状态的Activity*/
+    public static void startNetActivity(Context context){
+        Intent intent = new Intent(context , NetworkingAcitivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
     }
 
     @Override

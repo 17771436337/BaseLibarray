@@ -7,4 +7,6 @@
 
     <!--设置外间距-->
     <dimen name="layout_margin">10dp</dimen>
+
+    <dimen name="table_back_width">30dp</dimen>
 </resources>

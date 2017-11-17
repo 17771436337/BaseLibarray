@@ -24,6 +24,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ViewInject {
 
+    /**控件ID*/
     int value();
 
     /* parent view id */

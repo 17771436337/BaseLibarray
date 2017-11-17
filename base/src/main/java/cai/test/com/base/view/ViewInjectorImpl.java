@@ -26,9 +26,10 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.HashSet;
 
+import cai.test.com.base.annotation.ContentView;
 import cai.test.com.base.interfaces.ViewInjector;
 import cai.test.com.base.utils.LogUtil;
-import cai.test.com.base.annotation.ContentView;
+
 import cai.test.com.base.annotation.Event;
 import cai.test.com.base.annotation.ViewInject;
 import cai.test.com.base.x;

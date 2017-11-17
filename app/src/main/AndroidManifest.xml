@@ -23,6 +23,9 @@
 
 <activity android:name="cai.test.com.base.base.activitys.NetworkingAcitivity"
     android:label="无网状态"/>
+
+        <activity android:name="cai.test.com.base.base.activitys.WebActivity"
+            android:label="网络Activity"/>
     </application>
 
 </manifest>
