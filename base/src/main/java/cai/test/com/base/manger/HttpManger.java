@@ -140,7 +140,9 @@ public class HttpManger {
         }
 
         //当未联网时跳转界面
-        NetworkingAcitivity.startActivity(AppManger.getInstances().getBaseContext(),null);
+        Intent it = new Intent(x.app(), NetworkingAcitivity.class);
+        it.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        x.app().startActivity(it);
         return false;
     }
 

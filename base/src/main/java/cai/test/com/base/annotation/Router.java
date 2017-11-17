@@ -20,8 +20,8 @@ import cai.test.com.base.base.activitys.BasicsActivity;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Router {
-    /**获取每个Activity*/
 
+    /**获取每个Activity*/
     String value();
 
 }

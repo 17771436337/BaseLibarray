@@ -42,6 +42,7 @@ public class AppManger extends Application {
         initXUtils();
         dbInit();
 
+
     }
 
 
