@@ -1,4 +1,4 @@
-package cai.test.com.base.image;
+package cai.test.com.base.view.image;
 
 /**
  * Created by wyouflf on 15/10/20.

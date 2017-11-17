@@ -12,7 +12,7 @@ import cai.test.com.base.interfaces.TaskController;
 import cai.test.com.base.utils.task.TaskControllerImpl;
 import cai.test.com.base.db.DbManagerImpl;
 import cai.test.com.base.http.HttpManagerImpl;
-import cai.test.com.base.image.ImageManagerImpl;
+import cai.test.com.base.view.image.ImageManagerImpl;
 import cai.test.com.base.interfaces.DbManager;
 import cai.test.com.base.interfaces.HttpManager;
 import cai.test.com.base.interfaces.ImageManager;

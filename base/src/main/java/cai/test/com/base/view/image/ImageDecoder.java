@@ -1,4 +1,4 @@
-package cai.test.com.base.image;
+package cai.test.com.base.view.image;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

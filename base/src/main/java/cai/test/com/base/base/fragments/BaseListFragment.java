@@ -18,6 +18,7 @@ import cai.test.com.base.base.HolderView;
 import cai.test.com.base.interfaces.BaseAdapterInterfaces;
 import cai.test.com.base.interfaces.BaseAdapterOnClickInterfaces;
 import cai.test.com.base.interfaces.BaseViewInterrfaces;
+import cai.test.com.base.interfaces.RecyclerViewRefresh;
 import cai.test.com.base.view.xrecyclerview.ProgressStyle;
 import cai.test.com.base.view.xrecyclerview.XRecyclerView;
 
@@ -25,7 +26,7 @@ import cai.test.com.base.view.xrecyclerview.XRecyclerView;
  * Created by Administrator on 2017/10/23.
  * 列表展示数据
  */
-public abstract class BaseListFragment<T> extends BasicsFragment implements XRecyclerView.LoadingListener ,BaseAdapterInterfaces,BaseAdapterOnClickInterfaces,BaseViewInterrfaces {
+public abstract class BaseListFragment<T> extends BasicsFragment implements RecyclerViewRefresh,BaseAdapterInterfaces,BaseAdapterOnClickInterfaces,BaseViewInterrfaces {
     /**
      * grid布局与瀑布流布局默认行数
      */
@@ -65,11 +66,6 @@ public abstract class BaseListFragment<T> extends BasicsFragment implements XRec
 
     public abstract boolean onItemLongClick(View view, HolderView holder, int position);
 
-    /**"上拉刷新数据*/
-    protected abstract void onRefreshData();
-
-    /**下拉加载数据*/
-    protected abstract void onLoadMoreData();
 
     /**显示时不需要该布局*/
     @Override
@@ -116,39 +112,6 @@ public abstract class BaseListFragment<T> extends BasicsFragment implements XRec
         mRecyclerView.setLoadingMoreEnabled(isLoadMore);
         mRecyclerView.setPullRefreshEnabled(isRefresh);
     }
-
-
-    @Override
-    public void onRefresh() {
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                onRefreshData();
-                mRecyclerView.refreshComplete();
-                mAdapter.notifyDataSetChanged();
-            }
-        },1000);
-
-
-
-    }
-
-    @Override
-    public void onLoadMore() {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                onLoadMoreData();
-                mRecyclerView.loadMoreComplete();
-                mAdapter.notifyDataSetChanged();
-
-            }
-        },1000);
-
-    }
-
-
     /**
      * @param listType 选择布局种类
      */
