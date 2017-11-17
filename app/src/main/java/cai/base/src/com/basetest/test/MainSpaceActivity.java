@@ -8,7 +8,6 @@ public class MainSpaceActivity extends BaseFragmentActivity {
     public void init() {
         addFragment(R.id.content,new MainFragment());
     }
-
     @Override
     public int getContentViewId() {
         return R.layout.fragment_main;
