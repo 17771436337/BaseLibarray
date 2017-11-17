@@ -52,8 +52,9 @@ public class MainFragment extends BaseListFragment {
         return true;
     }
 
+
     @Override
-    protected void onRefreshData() {
+    public void onRefresh() {
         addData(list,true);
         Toast.makeText(context,"上拉刷新",Toast.LENGTH_SHORT).show();
 
@@ -80,7 +81,7 @@ public class MainFragment extends BaseListFragment {
     }
 
     @Override
-    protected void onLoadMoreData() {
+    public void onLoadMore() {
         addData(list,false);
         Toast.makeText(context,"下拉加载",Toast.LENGTH_SHORT).show();
         TestDb test = new TestDb();
@@ -91,7 +92,6 @@ public class MainFragment extends BaseListFragment {
         } catch (DbException e) {
             e.printStackTrace();
         }
-
     }
 
 
