@@ -3,17 +3,16 @@ package cai.test.com.base.manger;
 import android.app.Application;
 import android.util.Log;
 
-import org.xutils.BuildConfig;
-import org.xutils.DbManager;
-import org.xutils.db.table.TableEntity;
-import org.xutils.x;
-
 import java.io.File;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLSession;
 
+import cai.test.com.base.BuildConfig;
+import cai.test.com.base.interfaces.DbManager;
 import cai.test.com.base.config.CommonConfig;
+import cai.test.com.base.db.table.TableEntity;
+import cai.test.com.base.x;
 
 
 /**

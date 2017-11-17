@@ -1,0 +1,10 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="textandiconmargin">10dp</dimen>
+
+    <!--标题栏的高度-->
+    <dimen name="layout_table_height">45dp</dimen>
+
+    <!--设置外间距-->
+    <dimen name="layout_margin">10dp</dimen>
+</resources>

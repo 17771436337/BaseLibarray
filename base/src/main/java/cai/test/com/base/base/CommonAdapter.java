@@ -5,10 +5,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
-import org.xutils.common.util.LogUtil;
 
 import java.util.List;
 
+import cai.test.com.base.utils.LogUtil;
 import cai.test.com.base.interfaces.BaseAdapterInterfaces;
 import cai.test.com.base.interfaces.BaseAdapterOnClickInterfaces;
 

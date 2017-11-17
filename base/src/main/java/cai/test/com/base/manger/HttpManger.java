@@ -7,17 +7,17 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.text.TextUtils;
 
-import org.xutils.common.Callback;
-import org.xutils.common.util.LogUtil;
-import org.xutils.ex.HttpException;
-import org.xutils.http.HttpMethod;
-import org.xutils.http.RequestParams;
-import org.xutils.x;
 
 import java.io.File;
 
 import cai.test.com.base.base.activitys.NetworkingAcitivity;
+import cai.test.com.base.interfaces.Callback;
+import cai.test.com.base.utils.LogUtil;
+import cai.test.com.base.ex.HttpException;
+import cai.test.com.base.http.HttpMethod;
+import cai.test.com.base.http.RequestParams;
 import cai.test.com.base.interfaces.BaseCallListener;
+import cai.test.com.base.x;
 
 
 /**
@@ -50,7 +50,7 @@ public class HttpManger {
      * @param listener
      */
     public void get(String url, RequestParams params, BaseCallListener listener){
-      HttpManger.getInstance().Http(url,HttpMethod.GET,params,listener);
+      HttpManger.getInstance().Http(url, HttpMethod.GET,params,listener);
 
     }
 

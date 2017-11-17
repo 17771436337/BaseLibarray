@@ -1,1 +1,1 @@
-include ':app', ':xutils', ':xrecyclerview', ':base'
+include ':app', ':base'

@@ -10,10 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import org.xutils.x;
 
 import cai.test.com.base.R;
 import cai.test.com.base.base.activitys.BasicsActivity;
+import cai.test.com.base.x;
 
 /**
  * Created by Administrator on 2017/10/23.

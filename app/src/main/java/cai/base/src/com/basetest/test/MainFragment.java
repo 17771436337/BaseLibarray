@@ -3,18 +3,17 @@ package cai.base.src.com.basetest.test;
 import android.view.View;
 import android.widget.Toast;
 
-import org.xutils.ex.DbException;
-import org.xutils.http.RequestParams;
-import org.xutils.x;
-
 import java.util.ArrayList;
 
 import cai.base.src.com.basetest.R;
 import cai.test.com.base.base.HolderView;
 import cai.test.com.base.base.fragments.BaseListFragment;
+import cai.test.com.base.ex.DbException;
+import cai.test.com.base.http.RequestParams;
 import cai.test.com.base.interfaces.BaseCallListener;
 import cai.test.com.base.manger.AppManger;
 import cai.test.com.base.manger.HttpManger;
+import cai.test.com.base.x;
 
 /**
  * Created by Administrator on 2017/10/23.

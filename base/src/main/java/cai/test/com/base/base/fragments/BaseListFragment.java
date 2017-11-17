@@ -8,19 +8,18 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 
-import com.jcodecraeer.xrecyclerview.ProgressStyle;
-import com.jcodecraeer.xrecyclerview.XRecyclerView;
+
 
 import java.util.ArrayList;
 import java.util.List;
-
-
 import cai.test.com.base.R;
 import cai.test.com.base.base.CommonAdapter;
 import cai.test.com.base.base.HolderView;
 import cai.test.com.base.interfaces.BaseAdapterInterfaces;
 import cai.test.com.base.interfaces.BaseAdapterOnClickInterfaces;
 import cai.test.com.base.interfaces.BaseViewInterrfaces;
+import cai.test.com.base.view.xrecyclerview.ProgressStyle;
+import cai.test.com.base.view.xrecyclerview.XRecyclerView;
 
 /**
  * Created by Administrator on 2017/10/23.

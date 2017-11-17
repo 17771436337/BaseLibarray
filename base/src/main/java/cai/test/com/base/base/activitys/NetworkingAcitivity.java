@@ -2,7 +2,6 @@ package cai.test.com.base.base.activitys;
 
 import android.view.View;
 
-import org.xutils.view.annotation.Event;
 
 import cai.test.com.base.R;
 import cai.test.com.base.utils.AppUtils;

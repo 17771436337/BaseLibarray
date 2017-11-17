@@ -1,19 +1,16 @@
 package cai.test.com.base.base.activitys;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import org.xutils.x;
 
 import cai.test.com.base.R;
-import cai.test.com.base.annotation.Router;
 import cai.test.com.base.interfaces.ActivityResult;
 import cai.test.com.base.manger.ActivityManger;
-import cai.test.com.base.utils.AnnotationUtils;
+import cai.test.com.base.x;
 
 /**
  * Created by Administrator on 2017/9/25.

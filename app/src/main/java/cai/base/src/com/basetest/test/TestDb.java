@@ -1,7 +1,7 @@
 package cai.base.src.com.basetest.test;
 
-import org.xutils.db.annotation.Column;
-import org.xutils.db.annotation.Table;
+import cai.test.com.base.annotation.Column;
+import cai.test.com.base.annotation.Table;
 
 /**
  * Created by Administrator on 2017/11/11.
