@@ -1,7 +1,7 @@
 package cai.test.com.base.interfaces;
 
 
-import cai.test.com.base.base.HolderView;
+import cai.test.com.base.view.adapter.HolderView;
 
 /**
  * Created by Administrator on 2017/11/13.

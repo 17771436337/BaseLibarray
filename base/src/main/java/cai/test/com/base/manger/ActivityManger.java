@@ -8,8 +8,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
 
-import cai.test.com.base.base.activitys.BasicsActivity;
-
 /**
  * Created by Administrator on 2017/10/28.
  * 应用程序Activity管理类：用于Activity管理和应用程序退出

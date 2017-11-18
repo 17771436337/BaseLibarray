@@ -21,10 +21,10 @@
             </intent-filter>
         </activity>
 
-<activity android:name="cai.test.com.base.base.activitys.NetworkingAcitivity"
+<activity android:name="cai.test.com.base.view.activitys.NetworkingAcitivity"
     android:label="无网状态"/>
 
-        <activity android:name="cai.test.com.base.base.activitys.WebActivity"
+        <activity android:name="cai.test.com.base.view.activitys.WebActivity"
             android:label="网络Activity"/>
     </application>
 

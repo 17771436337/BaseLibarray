@@ -1,9 +1,10 @@
 package cai.base.src.com.basetest.test;
 import cai.base.src.com.basetest.R;
-import cai.test.com.base.base.activitys.BaseFragmentActivity;
-import cai.test.com.base.base.activitys.BaseTitleActivity;
-import cai.test.com.base.base.activitys.WebActivity;
-import cai.test.com.base.base.fragments.BaseSpaceFragment;
+import cai.test.com.base.annotation.ContentView;
+import cai.test.com.base.view.activitys.BaseTitleActivity;
+import cai.test.com.base.view.activitys.WebActivity;
+
+@ContentView(R.layout.activity_no_network)
 public class MainSpaceActivity extends BaseTitleActivity {
 
     @Override

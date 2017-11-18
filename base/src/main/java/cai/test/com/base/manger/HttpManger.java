@@ -2,7 +2,6 @@
 package cai.test.com.base.manger;
 
 import android.content.Context;
-import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.text.TextUtils;
@@ -10,7 +9,7 @@ import android.text.TextUtils;
 
 import java.io.File;
 
-import cai.test.com.base.base.activitys.NetworkingAcitivity;
+import cai.test.com.base.view.activitys.NetworkingAcitivity;
 import cai.test.com.base.interfaces.Callback;
 import cai.test.com.base.utils.LogUtil;
 import cai.test.com.base.ex.HttpException;

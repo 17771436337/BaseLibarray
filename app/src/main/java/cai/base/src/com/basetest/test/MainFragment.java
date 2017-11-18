@@ -6,8 +6,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import cai.base.src.com.basetest.R;
-import cai.test.com.base.base.HolderView;
-import cai.test.com.base.base.fragments.BaseListFragment;
+import cai.test.com.base.view.adapter.HolderView;
+import cai.test.com.base.view.fragments.BaseListFragment;
 import cai.test.com.base.ex.DbException;
 import cai.test.com.base.http.RequestParams;
 import cai.test.com.base.interfaces.BaseCallListener;
