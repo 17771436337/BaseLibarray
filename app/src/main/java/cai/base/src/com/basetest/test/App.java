@@ -7,4 +7,13 @@ import cai.test.com.base.manger.AppManger;
  */
 
 public class App extends AppManger {
+    @Override
+    public String getDBName() {
+        return Config.DBName;
+    }
+
+    @Override
+    protected String getDBPath() {
+        return Config.DBPath;
+    }
 }

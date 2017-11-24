@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cai.base.src.com.basetest">
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
+        android:name=".test.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:name=".test.App"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -21,11 +23,20 @@
             </intent-filter>
         </activity>
 
-<activity android:name="cai.test.com.base.view.activitys.NetworkingAcitivity"
-    android:label="无网状态"/>
 
-        <activity android:name="cai.test.com.base.view.activitys.WebActivity"
-            android:label="网络Activity"/>
+        <activity android:name=".test.activity.LoginActivity"
+            android:label="登陆"/>
+
+        <activity android:name=".test.activity.RegisterActivity"
+            android:label="注册"/>
+
+        <activity
+            android:name="cai.test.com.base.view.activitys.NetworkingAcitivity"
+            android:label="无网状态" />
+
+        <activity
+            android:name="cai.test.com.base.view.activitys.WebActivity"
+            android:label="网络Activity" />
     </application>
 
 </manifest>

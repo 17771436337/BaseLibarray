@@ -10,7 +10,6 @@ import javax.net.ssl.SSLSession;
 
 import cai.test.com.base.BuildConfig;
 import cai.test.com.base.interfaces.DbManager;
-import cai.test.com.base.config.CommonConfig;
 import cai.test.com.base.db.table.TableEntity;
 import cai.test.com.base.x;
 
@@ -19,7 +18,7 @@ import cai.test.com.base.x;
  * Created by Administrator on 2017/10/28.
  */
 
-public class AppManger extends Application {
+public abstract class AppManger extends Application {
 
     private DbManager db;
 
@@ -33,6 +32,13 @@ public class AppManger extends Application {
     public static AppManger getInstances() {
         return instances;
     }
+
+
+    /**数据库名称*/
+    public abstract String getDBName();
+
+    /**数据库路径*/
+    protected abstract String getDBPath();
 
     @Override
     public void onCreate() {
@@ -60,11 +66,12 @@ public class AppManger extends Application {
     }
 
 
+
     /**数据库的初始化*/
     private void dbInit(){
         DbManager.DaoConfig daoConfig = new DbManager.DaoConfig()
                 //设置数据库名，默认xutils.db
-                .setDbName(CommonConfig.DBName+".db")
+                .setDbName(getDBName()+".db")
                 //设置表创建的监听
                 .setTableCreateListener(new DbManager.TableCreateListener() {
                     @Override
@@ -75,7 +82,7 @@ public class AppManger extends Application {
                 //设置是否允许事务，默认true
                 //.setAllowTransaction(true)
                 //设置数据库路径，默认安装程序路径下
-                .setDbDir(new File(CommonConfig.DBPath))
+                .setDbDir(new File(getDBPath()))
                 //设置数据库的版本号
                 .setDbVersion(1)
                 //设置数据库更新的监听
