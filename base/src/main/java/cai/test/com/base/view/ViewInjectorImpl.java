@@ -75,18 +75,18 @@ public final class ViewInjectorImpl implements ViewInjector {
     public void inject(Activity activity) {
         //获取Activity的ContentView的注解
         Class<?> handlerType = activity.getClass();
-        try {
-            ContentView contentView = findContentView(handlerType);
-            if (contentView != null) {
-                int viewId = contentView.value();
-                if (viewId > 0) {
-                    Method setContentViewMethod = handlerType.getMethod("setContentView", int.class);
-                    setContentViewMethod.invoke(activity, viewId);
-                }
-            }
-        } catch (Throwable ex) {
-            LogUtil.e(ex.getMessage(), ex);
-        }
+//        try {
+//            ContentView contentView = findContentView(handlerType);
+//            if (contentView != null) {
+//                int viewId = contentView.value();
+//                if (viewId > 0) {
+//                    Method setContentViewMethod = handlerType.getMethod("setContentView", int.class);
+//                    setContentViewMethod.invoke(activity, viewId);
+//                }
+//            }
+//        } catch (Throwable ex) {
+//            LogUtil.e(ex.getMessage(), ex);
+//        }
 
         injectObject(activity, handlerType, new ViewFinder(activity));
     }
@@ -101,17 +101,17 @@ public final class ViewInjectorImpl implements ViewInjector {
         // inject ContentView
         View view = null;
         Class<?> handlerType = fragment.getClass();
-        try {
-            ContentView contentView = findContentView(handlerType);
-            if (contentView != null) {
-                int viewId = contentView.value();
-                if (viewId > 0) {
-                    view = inflater.inflate(viewId, container, false);
-                }
-            }
-        } catch (Throwable ex) {
-            LogUtil.e(ex.getMessage(), ex);
-        }
+//        try {
+//            ContentView contentView = findContentView(handlerType);
+//            if (contentView != null) {
+//                int viewId = contentView.value();
+//                if (viewId > 0) {
+//                    view = inflater.inflate(viewId, container, false);
+//                }
+//            }
+//        } catch (Throwable ex) {
+//            LogUtil.e(ex.getMessage(), ex);
+//        }
 
         // inject res & event
         injectObject(fragment, handlerType, new ViewFinder(view));

@@ -24,10 +24,10 @@
         </activity>
 
 
-        <activity android:name=".test.activity.LoginActivity"
+        <activity android:name=".test.mvp.view.activity.LoginActivity"
             android:label="登陆"/>
 
-        <activity android:name=".test.activity.RegisterActivity"
+        <activity android:name=".test.mvp.view.activity.RegisterActivity"
             android:label="注册"/>
 
         <activity

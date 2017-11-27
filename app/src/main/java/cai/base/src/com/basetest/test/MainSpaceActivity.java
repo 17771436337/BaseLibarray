@@ -3,7 +3,7 @@ package cai.base.src.com.basetest.test;
 import android.text.TextUtils;
 
 import cai.base.src.com.basetest.R;
-import cai.base.src.com.basetest.test.activity.LoginActivity;
+import cai.base.src.com.basetest.test.mvp.view.activity.LoginActivity;
 import cai.test.com.base.utils.SPUtils;
 import cai.test.com.base.view.activitys.BaseFragmentActivity;
 
