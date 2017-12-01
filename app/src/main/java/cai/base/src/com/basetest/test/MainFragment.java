@@ -88,7 +88,8 @@ public class MainFragment extends BaseListFragment {
         test.setDate(System.currentTimeMillis());
         test.setText("测试");
         try {
-            AppManger.getInstances().getDb().save(test);
+            x.db().save(test);
+
         } catch (DbException e) {
             e.printStackTrace();
         }
@@ -106,7 +107,6 @@ public class MainFragment extends BaseListFragment {
 
     @Override
     public int getItemLayoutId(int viewType) {
-
         return R.layout.item_test_text;
     }
 }

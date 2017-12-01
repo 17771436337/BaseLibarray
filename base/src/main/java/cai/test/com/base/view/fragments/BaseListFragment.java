@@ -17,10 +17,9 @@ import cai.test.com.base.view.adapter.CommonAdapter;
 import cai.test.com.base.view.adapter.HolderView;
 import cai.test.com.base.interfaces.BaseAdapterInterfaces;
 import cai.test.com.base.interfaces.BaseAdapterOnClickInterfaces;
-import cai.test.com.base.interfaces.BaseViewInterrfaces;
 import cai.test.com.base.interfaces.RecyclerViewRefresh;
-import cai.test.com.base.view.xrecyclerview.ProgressStyle;
-import cai.test.com.base.view.xrecyclerview.XRecyclerView;
+import cai.test.com.base.view.widget.xrecyclerview.ProgressStyle;
+import cai.test.com.base.view.widget.xrecyclerview.XRecyclerView;
 
 /**
  * Created by Administrator on 2017/10/23.

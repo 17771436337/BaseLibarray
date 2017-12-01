@@ -6,7 +6,7 @@ import android.widget.ImageView;
 
 import java.io.File;
 
-import cai.test.com.base.view.image.ImageOptions;
+import cai.test.com.base.view.widget.image.ImageOptions;
 
 /**
  * Created by wyouflf on 15/6/17.

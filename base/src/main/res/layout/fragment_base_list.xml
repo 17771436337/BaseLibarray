@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-        <cai.test.com.base.view.xrecyclerview.XRecyclerView
+        <cai.test.com.base.view.widget.xrecyclerview.XRecyclerView
             android:id="@+id/recyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>

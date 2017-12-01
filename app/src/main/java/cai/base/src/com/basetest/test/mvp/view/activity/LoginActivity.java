@@ -2,6 +2,7 @@ package cai.base.src.com.basetest.test.mvp.view.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
@@ -75,12 +76,18 @@ public class LoginActivity extends BaseTitleActivity<LoginPresenter> {
 
     /**跳转首页*/
     public void startMain(){
-       startActivity(MainSpaceActivity.class,null);
+        new Handler(getMainLooper()).post(new Runnable() {
+            @Override
+            public void run() {
+                startActivity(MainSpaceActivity.class,null);
+            }
+        });
+
     }
 
     /**跳转到登陆界面*/
     public static void startLogin(Context context){
-        Intent intent = new Intent(context , NetworkingAcitivity.class);
+        Intent intent = new Intent(context , LoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }

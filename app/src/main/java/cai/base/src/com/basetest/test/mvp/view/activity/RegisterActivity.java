@@ -10,7 +10,7 @@ import cai.base.src.com.basetest.R;
 import cai.base.src.com.basetest.test.db.UserDb;
 import cai.test.com.base.annotation.Event;
 import cai.test.com.base.annotation.ViewInject;
-import cai.test.com.base.view.CountDownTimerUtils;
+import cai.test.com.base.view.widget.CountDownTimerUtils;
 import cai.test.com.base.view.activitys.BaseTitleActivity;
 
 /**

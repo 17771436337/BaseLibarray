@@ -1,5 +1,6 @@
 package cai.base.src.com.basetest.test;
 
+import android.content.Intent;
 import android.text.TextUtils;
 
 import cai.base.src.com.basetest.R;
@@ -11,12 +12,13 @@ public class MainSpaceActivity extends BaseFragmentActivity {
 
     @Override
     public void init() {
-addFragment(R.id.content,new MainFragment());
+        addFragment(R.id.content,new MainFragment());
 
         if (!isLogin()){
-            startActivity(LoginActivity.class,null);
+           LoginActivity.startLogin(this);
         }
 
+        startService(new Intent(this,ChatApp.class));
     }
     @Override
     public int getContentViewId() {

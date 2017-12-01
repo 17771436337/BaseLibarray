@@ -3,6 +3,7 @@ package cai.base.src.com.basetest.test.db;
 import cai.base.src.com.basetest.test.App;
 import cai.test.com.base.annotation.Column;
 import cai.test.com.base.annotation.Table;
+import cai.test.com.base.x;
 
 /**
  * Created by Administrator on 2017/11/24.
@@ -59,11 +60,11 @@ public class UserDb {
     public static boolean  register(UserDb bean){
 
         try {
-            UserDb first = App.getInstances().getDb().selector(UserDb.class).where("_name", "=", bean.account).or("_password", "=", bean.password).findFirst();
+            UserDb first = x.db().selector(UserDb.class).where("_name", "=", bean.account).or("_password", "=", bean.password).findFirst();
             if (first != null){
                 return false;
             }else{
-               return App.getInstances().getDb().saveBindingId(bean);
+               return x.db().saveBindingId(bean);
             }
         }catch (Exception e){
             return false;
@@ -73,7 +74,7 @@ public class UserDb {
     /**登陆，查询数据库数据，进行判断*/
     public static long  login(String account,String password){
         try {
-            UserDb first = App.getInstances().getDb().selector(UserDb.class).where("_name", "=", account).and("_password", "=", password).findFirst();
+            UserDb first = x.db().selector(UserDb.class).where("_name", "=", account).and("_password", "=", password).findFirst();
             if (first != null){
                 return first.getId();
             }else{
