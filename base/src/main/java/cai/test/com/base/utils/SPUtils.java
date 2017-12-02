@@ -10,7 +10,7 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
 
-import cai.test.com.base.manger.AppManger;
+import cai.test.com.base.x;
 
 /**
  * <pre>
@@ -52,7 +52,7 @@ public final class SPUtils {
     }
 
     private SPUtils(final String spName) {
-        sp = AppManger.getInstances().getSharedPreferences(spName, Context.MODE_PRIVATE);
+        sp = x.app().getSharedPreferences(spName, Context.MODE_PRIVATE);
     }
 
     /**

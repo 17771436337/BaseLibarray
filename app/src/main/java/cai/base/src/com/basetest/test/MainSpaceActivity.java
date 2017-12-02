@@ -17,7 +17,6 @@ public class MainSpaceActivity extends BaseFragmentActivity {
         if (!isLogin()){
            LoginActivity.startLogin(this);
         }
-
         startService(new Intent(this,ChatApp.class));
     }
     @Override
