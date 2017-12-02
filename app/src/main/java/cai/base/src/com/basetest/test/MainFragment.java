@@ -11,7 +11,6 @@ import cai.test.com.base.view.fragments.BaseListFragment;
 import cai.test.com.base.ex.DbException;
 import cai.test.com.base.http.RequestParams;
 import cai.test.com.base.interfaces.BaseCallListener;
-import cai.test.com.base.manger.AppManger;
 import cai.test.com.base.manger.HttpManger;
 import cai.test.com.base.x;
 

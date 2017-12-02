@@ -9,8 +9,6 @@ import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLSession;
 
 import cai.test.com.base.BuildConfig;
-import cai.test.com.base.interfaces.DbManager;
-import cai.test.com.base.manger.AppManger;
 import cai.test.com.base.x;
 
 /**
