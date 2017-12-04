@@ -40,6 +40,7 @@ public abstract class BasicsActivity<P extends Presenter> extends AppCompatActiv
         context = this;
         ActivityManger.getAppManager().addActivity(this);
         initView(savedInstanceState);
+        init();
         x.view().inject(this);
     }
 

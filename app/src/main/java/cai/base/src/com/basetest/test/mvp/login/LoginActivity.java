@@ -1,31 +1,25 @@
-package cai.base.src.com.basetest.test.mvp.view.activity;
+package cai.base.src.com.basetest.test.mvp.login;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import cai.base.src.com.basetest.R;
-import cai.base.src.com.basetest.test.Config;
-import cai.base.src.com.basetest.test.MainSpaceActivity;
-import cai.base.src.com.basetest.test.db.UserDb;
-import cai.base.src.com.basetest.test.mvp.presenter.LoginPresenter;
-import cai.test.com.base.annotation.ContentView;
+import cai.base.src.com.basetest.test.mvp.main.MainActivity;
+import cai.base.src.com.basetest.test.mvp.register.RegisterActivity;
 import cai.test.com.base.annotation.Event;
 import cai.test.com.base.annotation.RequirePresenter;
 import cai.test.com.base.annotation.ViewInject;
-import cai.test.com.base.utils.SPUtils;
 import cai.test.com.base.view.activitys.BaseTitleActivity;
-import cai.test.com.base.view.activitys.NetworkingAcitivity;
 
 /**
  * Created by Administrator on 2017/11/24.
  */
 @RequirePresenter(LoginPresenter.class)
-public class LoginActivity extends BaseTitleActivity<LoginPresenter> {
+public class LoginActivity extends BaseTitleActivity<LoginPresenter> implements LoginView{
 
 
     @ViewInject(R.id.account)
@@ -37,7 +31,7 @@ public class LoginActivity extends BaseTitleActivity<LoginPresenter> {
 
     @Override
     public void init() {
-
+        getPresenter().isLogin();
     }
 
     @Override
@@ -65,23 +59,21 @@ public class LoginActivity extends BaseTitleActivity<LoginPresenter> {
 
 
     /**用户用户账号*/
+    @Override
     public String getAccount(){
         return accountEdit.getText().toString();
     }
 
     /**获取用户密码*/
+    @Override
     public String getPassword(){
         return passwordEdit.getText().toString();
     }
 
     /**跳转首页*/
+    @Override
     public void startMain(){
-        new Handler(getMainLooper()).post(new Runnable() {
-            @Override
-            public void run() {
-                startActivity(MainSpaceActivity.class,null);
-            }
-        });
+                startActivity(MainActivity.class,null);
 
     }
 
