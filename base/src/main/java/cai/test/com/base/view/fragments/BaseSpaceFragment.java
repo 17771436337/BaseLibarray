@@ -18,7 +18,6 @@ public abstract class BaseSpaceFragment<P extends Presenter> extends BasicsFragm
     @Override
     protected void initView(LayoutInflater inflater, Bundle savedInstanceState) {
         mView = inflater.inflate(getContentViewId(), null);
-        init();
     }
 
 

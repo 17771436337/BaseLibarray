@@ -25,7 +25,7 @@ import cai.test.com.base.view.widget.xrecyclerview.XRecyclerView;
  * Created by Administrator on 2017/10/23.
  * 列表展示数据
  */
-public abstract class BaseListFragment<T,P extends Presenter> extends BasicsFragment<P>  implements RecyclerViewRefresh,BaseAdapterInterfaces,BaseAdapterOnClickInterfaces{
+public abstract class BaseListFragment<T extends Object,P extends Presenter> extends BasicsFragment<P>  implements RecyclerViewRefresh,BaseAdapterInterfaces<T>,BaseAdapterOnClickInterfaces{
     /**
      * grid布局与瀑布流布局默认行数
      */
@@ -59,11 +59,9 @@ public abstract class BaseListFragment<T,P extends Presenter> extends BasicsFrag
         return mAdapter;
     }
 
-    public abstract void init();
-
-    public abstract void onItemClick(View view, HolderView holder, int position);
-
-    public abstract boolean onItemLongClick(View view, HolderView holder, int position);
+    public List<T> getList() {
+        return list;
+    }
 
 
     /**显示时不需要该布局*/
@@ -79,12 +77,11 @@ public abstract class BaseListFragment<T,P extends Presenter> extends BasicsFrag
         mRecyclerView = mView.findViewById(R.id.recyclerview);
         list = new ArrayList<>();
         mAdapter = new CommonAdapter<>(list,context,this,this);
-        chooseListType(mListType,mIsVertical);
+        chooseListType(BaseListType.STAGGERED_GRID_LAYOUT_MANAGER,true);
         mRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
         mRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.BallRotate);
         setLoadMoreAndRefresh(isLoadMore,isRefresh);
         mRecyclerView.setLoadingListener(this);
-        init();
 
     }
 
@@ -101,6 +98,7 @@ public abstract class BaseListFragment<T,P extends Presenter> extends BasicsFrag
            list.clear();
        }
        list.addAll(data);
+        getAdapter().notifyDataSetChanged();
     }
 
 
@@ -151,16 +149,14 @@ public abstract class BaseListFragment<T,P extends Presenter> extends BasicsFrag
         mRecyclerView.setAdapter(mAdapter);
     }
 
-    public abstract void bindData(HolderView holder, int position);
 
-    public abstract int getItemLayoutId(int viewType);
 
 
     /**设置对应的RecyclerView的显示类别值*/
- protected class BaseListType{
-        protected static final int LINEAR_LAYOUT_MANAGER = 0;
-        protected static final int GRID_LAYOUT_MANAGER = 1;
-        protected static  final int STAGGERED_GRID_LAYOUT_MANAGER = 2;
+ public class BaseListType{
+        public static final int LINEAR_LAYOUT_MANAGER = 0;
+        public static final int GRID_LAYOUT_MANAGER = 1;
+        public static  final int STAGGERED_GRID_LAYOUT_MANAGER = 2;
   }
 
 

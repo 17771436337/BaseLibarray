@@ -8,10 +8,10 @@ import cai.test.com.base.view.adapter.HolderView;
  * 适配器使用的对应的接口
  */
 
-public interface BaseAdapterInterfaces{
+public interface BaseAdapterInterfaces<T>{
 
     /**适配器绑定数据*/
-    void bindData(HolderView holder, int position);
+    void bindData(HolderView holder,T data, int position);
 
     /**
      * 适配器根据不同的type设置不同的参数

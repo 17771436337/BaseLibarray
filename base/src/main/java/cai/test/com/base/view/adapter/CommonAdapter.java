@@ -28,9 +28,9 @@ public class CommonAdapter<T> extends RecyclerView.Adapter<HolderView>{
 
     BaseAdapterOnClickInterfaces mOnClick;
 
-    BaseAdapterInterfaces mAdapterInterfaces;
+    BaseAdapterInterfaces<T> mAdapterInterfaces;
 
-    public CommonAdapter(List<T> data, Context context, BaseAdapterOnClickInterfaces mOnClick, BaseAdapterInterfaces mAdapterInterfaces) {
+    public CommonAdapter(List<T> data, Context context, BaseAdapterOnClickInterfaces mOnClick, BaseAdapterInterfaces<T> mAdapterInterfaces) {
         this.data = data;
         this.context = context;
         this.mOnClick = mOnClick;
@@ -50,7 +50,7 @@ public class CommonAdapter<T> extends RecyclerView.Adapter<HolderView>{
 
     @Override
     public void onBindViewHolder(final HolderView holder, final int position) {
-        mAdapterInterfaces.bindData(holder,position);
+        mAdapterInterfaces.bindData(holder,data.get(position),position);
         //---------------------------------------------------------------
         /**列表的单机事件*/
         holder.itemView.setOnClickListener(new View.OnClickListener() {

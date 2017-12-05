@@ -5,6 +5,7 @@ import android.view.MenuItem;
 
 import cai.base.src.com.basetest.R;
 import cai.base.src.com.basetest.test.mvp.news.NewsFragment;
+import cai.base.src.com.basetest.test.mvp.news.NewsListFragment;
 import cai.test.com.base.view.activitys.BaseHome2Activity;
 
 public class MainActivity extends BaseHome2Activity {
@@ -45,7 +46,7 @@ public class MainActivity extends BaseHome2Activity {
 
     /**启动新闻*/
     private void startNews(){
-        getSupportFragmentManager().beginTransaction().replace(R.id.frame_content, new NewsFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_content, new NewsListFragment()).commit();
     }
 
     @Override

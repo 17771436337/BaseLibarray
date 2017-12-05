@@ -16,4 +16,6 @@ public class Config {
     public  static String DBPath = "/sdcard/Base";
 
     public static final String News_Key = "2cf5722b519719df3dea59880c300489";
+
+    public static final String News_Key2 = "62aceaccd3987e5dc1f18b5e6d884a64";
 }
