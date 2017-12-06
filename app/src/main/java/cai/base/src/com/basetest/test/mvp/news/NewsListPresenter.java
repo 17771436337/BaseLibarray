@@ -21,7 +21,7 @@ import cai.test.com.base.x;
 
 public class NewsListPresenter extends Presenter<NewsFragment> implements BaseCallListener {
 
-    private String type;
+    private NewsBean type;
     private int page;
     private int size;
 
@@ -43,15 +43,15 @@ public class NewsListPresenter extends Presenter<NewsFragment> implements BaseCa
      *          每页个数
      */
 
-    public void getData(String category,int page,int size){
+    public void getData(NewsBean category,int page,int size){
         type = category;
         this.page = page;
         this.size = size;
-        ArrayList<NewsDb> data = (ArrayList<NewsDb>) NewsDb.getData(category,page,size);
+        ArrayList<NewsDb> data = (ArrayList<NewsDb>) NewsDb.getData(category.getTitle(),page,size);
         if (data != null && data.size() > 0 ){
             getView().addData(data);
         }else{
-            getHttpData(category);
+            getHttpData(category.getValue());
         }
     }
 
@@ -63,7 +63,7 @@ public class NewsListPresenter extends Presenter<NewsFragment> implements BaseCa
 
           if (model.getResult() != null) {
               //通过去重的方法实现数据保存
-              NewsDb.save(type,model.getResult().getData());
+              NewsDb.save(model.getResult().getData());
               //当进行网络请求后，重新从数据库提取数据
               getData(type, page, size);
           }

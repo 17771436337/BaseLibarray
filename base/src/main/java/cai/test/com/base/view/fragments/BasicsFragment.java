@@ -54,10 +54,11 @@ public abstract class BasicsFragment<P extends Presenter> extends Fragment imple
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         presenterDelegate.onCreate(this);
         injected = true;
-        x.view().inject(this, inflater, container);
+
         context = getActivity();
-        initView(inflater,savedInstanceState);
-        init();
+       mView = initView(inflater,savedInstanceState);
+//        mView = x.view().inject(this, inflater, container);
+        x.view().inject(this,mView);
         return mView;
     }
 
@@ -65,9 +66,9 @@ public abstract class BasicsFragment<P extends Presenter> extends Fragment imple
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         if (!injected) {
-            x.view().inject(this, this.getView());
+            x.view().inject(this, mView);
         }
-
+        init();
     }
 
     @Override
@@ -80,7 +81,6 @@ public abstract class BasicsFragment<P extends Presenter> extends Fragment imple
     @Override
     public void onDestroy() {
         super.onDestroy();
-
         getActivity().overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
     }
 
@@ -92,7 +92,7 @@ public abstract class BasicsFragment<P extends Presenter> extends Fragment imple
 
 
     /**初始化布局*/
-    protected abstract void initView(LayoutInflater inflater,Bundle savedInstanceState);
+    protected abstract View initView(LayoutInflater inflater,Bundle savedInstanceState);
 
 
 

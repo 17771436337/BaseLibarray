@@ -101,17 +101,17 @@ public final class ViewInjectorImpl implements ViewInjector {
         // inject ContentView
         View view = null;
         Class<?> handlerType = fragment.getClass();
-//        try {
-//            ContentView contentView = findContentView(handlerType);
-//            if (contentView != null) {
-//                int viewId = contentView.value();
-//                if (viewId > 0) {
-//                    view = inflater.inflate(viewId, container, false);
-//                }
-//            }
-//        } catch (Throwable ex) {
-//            LogUtil.e(ex.getMessage(), ex);
-//        }
+        try {
+            ContentView contentView = findContentView(handlerType);
+            if (contentView != null) {
+                int viewId = contentView.value();
+                if (viewId > 0) {
+                    view = inflater.inflate(viewId, container, false);
+                }
+            }
+        } catch (Throwable ex) {
+            LogUtil.e(ex.getMessage(), ex);
+        }
 
         // inject res & event
         injectObject(fragment, handlerType, new ViewFinder(view));

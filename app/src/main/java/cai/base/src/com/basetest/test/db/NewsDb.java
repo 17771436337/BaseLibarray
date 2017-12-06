@@ -50,8 +50,6 @@ public class NewsDb {
     private String thumbnail_pic_s02;
     @Column(name = "news_thumbnail_3")
     private String thumbnail_pic_s03;
-    @Column(name = "news_type")
-    private String type;
 
 
     public String getUniquekey() {
@@ -126,23 +124,16 @@ public class NewsDb {
         this.thumbnail_pic_s03 = thumbnail_pic_s03;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
 
     /**去重数据保存*/
-    public static void save(String type,List<NewsDb> list){
+    public static void save(List<NewsDb> list){
         for (NewsDb bean : list) {
-            bean.setType(type);
             try {
                 //查询是否存在该数据
                 NewsDb data = x.db().selector(NewsDb.class)
                         .where("news_key", "=", bean.getUniquekey())
                         .and("news_title", "=", bean.getTitle())
+                        .and("news_category","=",bean.getCategory())
                         .and("news_time", "=", bean.getDate())
                         .findFirst();
 
@@ -168,11 +159,9 @@ public class NewsDb {
      */
     public static List<NewsDb> getData(String category,int page,int size){
         try {
-
-
             List<NewsDb>  data = null;
             if (!TextUtils.isEmpty(category)) {
-                data = x.db().selector(NewsDb.class).where("news_type", "=", category).limit(size).offset(size * page).findAll();
+                data = x.db().selector(NewsDb.class).where("news_category", "=", category).limit(size).offset(size * page).findAll();
             }else{
                 data = x.db().selector(NewsDb.class).limit(size).offset(size * page).findAll();
             }

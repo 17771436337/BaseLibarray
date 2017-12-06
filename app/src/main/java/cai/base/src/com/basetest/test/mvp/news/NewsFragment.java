@@ -26,22 +26,24 @@ public class NewsFragment extends BaseListFragment<NewsDb,NewsListPresenter>{
     /**是否清除表中数据*/
     private boolean isClear = true;
 
-    private String title = "头条";
+    private NewsBean title = null;
 
     private int page = 0;
 
     private int pageSize = 10;
 
-    public void setTitle(String title) {
+    public void setTitle(NewsBean title) {
         this.title = title;
     }
 
     @Override
     public void init() {
-//        title = getArguments().getString("title");
+
         setLoadMoreAndRefresh(true,true);
         getPresenter().getData(title,page,pageSize);
     }
+
+
 
 
     public static Fragment newInstance(String title) {

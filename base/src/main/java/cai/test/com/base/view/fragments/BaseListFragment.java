@@ -6,7 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
-
+import android.view.ViewGroup;
 
 
 import java.util.ArrayList;
@@ -71,9 +71,8 @@ public abstract class BaseListFragment<T extends Object,P extends Presenter> ext
     }
 
     @Override
-    protected void initView(LayoutInflater inflater, Bundle savedInstanceState) {
+    protected View initView(LayoutInflater inflater, Bundle savedInstanceState) {
         mView = inflater.inflate(getContentViewId(),null);
-
         mRecyclerView = mView.findViewById(R.id.recyclerview);
         list = new ArrayList<>();
         mAdapter = new CommonAdapter<>(list,context,this,this);
@@ -82,9 +81,8 @@ public abstract class BaseListFragment<T extends Object,P extends Presenter> ext
         mRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.BallRotate);
         setLoadMoreAndRefresh(isLoadMore,isRefresh);
         mRecyclerView.setLoadingListener(this);
-
+        return mView;
     }
-
 
     /**
      * 添加数据

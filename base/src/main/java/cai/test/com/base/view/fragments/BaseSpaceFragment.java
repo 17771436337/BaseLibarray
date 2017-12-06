@@ -2,6 +2,8 @@ package cai.test.com.base.view.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import cai.test.com.base.interfaces.BaseViewInterrfaces;
 import cai.test.com.base.presenter.Presenter;
@@ -16,8 +18,9 @@ public abstract class BaseSpaceFragment<P extends Presenter> extends BasicsFragm
 
 
     @Override
-    protected void initView(LayoutInflater inflater, Bundle savedInstanceState) {
+    protected View initView(LayoutInflater inflater, Bundle savedInstanceState) {
         mView = inflater.inflate(getContentViewId(), null);
+        return mView;
     }
 
 
