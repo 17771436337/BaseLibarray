@@ -38,7 +38,7 @@ public abstract class BasicsFragment<P extends Presenter> extends Fragment imple
     private boolean injected = false;
 
     private PresenterDelegate<P> presenterDelegate =
-            new PresenterDelegate<>(ReflectionPresenterFactory.<P>fromViewClass(getClass()));
+            new PresenterDelegate<P>(ReflectionPresenterFactory.<P>fromViewClass(getClass()));
 
     /**
      * 获取宿主的Activity
@@ -57,7 +57,6 @@ public abstract class BasicsFragment<P extends Presenter> extends Fragment imple
 
         context = getActivity();
        mView = initView(inflater,savedInstanceState);
-//        mView = x.view().inject(this, inflater, container);
         x.view().inject(this,mView);
         return mView;
     }
@@ -130,7 +129,9 @@ public abstract class BasicsFragment<P extends Presenter> extends Fragment imple
      */
     protected void startActivity(Class activity, Bundle bundle) {
         Intent it = new Intent(context, activity);
-        it.putExtras(bundle);
+        if (bundle != null){
+            it.putExtras(bundle);
+        }
         it.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         getActivity().startActivity(it);
         getActivity().overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
@@ -150,7 +151,9 @@ public abstract class BasicsFragment<P extends Presenter> extends Fragment imple
      */
     protected void startActivityForResult(Class activity, Bundle bundle, int requestCode) {
         Intent it = new Intent(context, activity);
-        it.putExtras(bundle);
+        if (bundle != null){
+            it.putExtras(bundle);
+        }
         getActivity().startActivityForResult(it, requestCode);
         getActivity().overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
     }

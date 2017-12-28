@@ -32,6 +32,10 @@ public class HttpManger {
         cacheTime = 1000*60;
     }
 
+
+
+
+
     /**
      * 单例
      * @return

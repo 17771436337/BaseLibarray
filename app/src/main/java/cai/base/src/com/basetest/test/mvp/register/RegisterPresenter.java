@@ -3,9 +3,14 @@ package cai.base.src.com.basetest.test.mvp.register;
 import android.text.TextUtils;
 import android.widget.Toast;
 
+import com.hyphenate.EMError;
+import com.hyphenate.chat.EMClient;
+import com.hyphenate.exceptions.HyphenateException;
+
 import cai.base.src.com.basetest.test.db.UserDb;
 import cai.test.com.base.presenter.Presenter;
 import cai.test.com.base.view.widget.CountDownTimerUtils;
+import cai.test.com.base.x;
 
 /**
  * Created by Administrator on 2017/12/4.
@@ -19,8 +24,8 @@ public class RegisterPresenter extends Presenter<RegisterActivity>{
      * 注册
      */
     public void register() {
-        String  account = getView().getAccount();
-        String password = getView().getPassword();
+        final String  account = getView().getAccount();
+        final String password = getView().getPassword();
         String verification = getView().getVerification();
         if (TextUtils.isEmpty(account)){
             Toast.makeText(getView(),"请输入用户账号",Toast.LENGTH_SHORT).show();
@@ -51,8 +56,34 @@ public class RegisterPresenter extends Presenter<RegisterActivity>{
         user.setPassword(password);
         user.setTimeCreation(System.currentTimeMillis());
         if (UserDb.register(user)){
-            Toast.makeText(getView(),"注册成功",Toast.LENGTH_SHORT).show();
-            getView().finish();
+
+            x.task().run(new Runnable() {
+                @Override
+                public void run() {
+                try{
+                    EMClient.getInstance().createAccount(account, password);
+                    x.task().autoPost(new Runnable() {
+                        public void run() {
+                            Toast.makeText(getView(),"注册成功",Toast.LENGTH_SHORT).show();
+                            getView().finish();
+
+                        }
+                    });
+                } catch (final HyphenateException e) {
+                    x.task().autoPost(new Runnable() {
+                        public void run() {
+                            int errorCode=e.getErrorCode();
+                            Toast.makeText(getView(),"注册失败"+errorCode,Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+
+
+
+                }
+            }
+            });
+
         }else{
             Toast.makeText(getView(),"用户已存在",Toast.LENGTH_SHORT).show();
         }
@@ -63,6 +94,7 @@ public class RegisterPresenter extends Presenter<RegisterActivity>{
      * 获取验证码
      */
     public void getCode() {
+        code = 1234+"";
         CountDownTimerUtils mCountDownTimerUtils = new CountDownTimerUtils(getView().getCodeText(), 60000, 1000, new CountDownTimerUtils.DownTimer() {
             @Override
             public void onFinish() {

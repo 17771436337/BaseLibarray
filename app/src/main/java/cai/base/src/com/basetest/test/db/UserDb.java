@@ -60,7 +60,7 @@ public class UserDb {
     public static boolean  register(UserDb bean){
 
         try {
-            UserDb first = x.db().selector(UserDb.class).where("_name", "=", bean.account).or("_password", "=", bean.password).findFirst();
+            UserDb first = x.db().selector(UserDb.class).where("_name", "=", bean.account).and("_password", "=", bean.password).findFirst();
             if (first != null){
                 return false;
             }else{

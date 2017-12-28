@@ -1,9 +1,11 @@
 package cai.test.com.base.view.activitys;
 
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -51,20 +53,23 @@ public abstract class BaseTitleActivity<P extends Presenter> extends BasicsActiv
 
         FrameLayout content = (FrameLayout)findViewById(R.id.activity_base_content);
         content.addView(LayoutInflater.from(this).inflate(getContentViewId(),null));
-            if (!TextUtils.isEmpty(getTitleName())) {//如果内容不为空，则设置标题
-                mToolbar.setTitle(getTitleName());
-            }
+
     }
 
     @Override
     protected void initView(Bundle savedInstanceState) {
         setContentView(R.layout.layout_base_activity);
         setTableView();
-        init();
     }
 
 
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (!TextUtils.isEmpty(getTitleName())) {//如果内容不为空，则设置标题
+            mToolbar.setTitle(getTitleName());
+        }
+    }
 
     @Override
     public void onOptionItemClick(View v) {
@@ -73,4 +78,9 @@ public abstract class BaseTitleActivity<P extends Presenter> extends BasicsActiv
             onBackClick();
         }
     }
+
+
+
+
+
 }

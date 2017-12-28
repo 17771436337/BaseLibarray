@@ -29,8 +29,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".test.mvp.login.LoginActivity"
-            android:label="登陆">
+        <activity android:name=".test.mvp.login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -39,8 +38,24 @@
         </activity>
         <activity android:name=".test.mvp.main.MainActivity"
             android:label="首页"/>
+
         <activity android:name=".test.mvp.register.RegisterActivity"
             android:label="注册"/>
+
+        <activity android:name=".test.mvp.chat.ChatActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"
+            android:label="聊天"/>
+
+        <activity android:name=".test.mvp.chat.AddContactActivity"
+            android:label="添加好友"/>
+
+        <activity android:name=".test.mvp.chat.NewFriendsMsgActivity"
+            android:label="好友申请"/>
+
+        <activity android:name=".test.mvp.memo.AddMemoActivity"
+            android:label="添加便签"/>
 
         <activity
             android:name="cai.test.com.base.view.activitys.NetworkingAcitivity"
@@ -50,6 +65,33 @@
             android:name="cai.test.com.base.view.activitys.WebActivity"
             android:label="网络Activity" />
 
+
+
+
+
+
+
+
+        <!-- 设置环信应用的AppKey -->
+        <meta-data android:name="EASEMOB_APPKEY"  android:value="1020233514#app1" />
+        <!-- 声明SDK所需的service SDK核心功能-->
+        <service android:name="com.hyphenate.chat.EMChatService" android:exported="true"/>
+        <service android:name="com.hyphenate.chat.EMJobService"
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            android:exported="true"
+            />
+        <!-- 声明SDK所需的receiver -->
+        <receiver android:name="com.hyphenate.chat.EMMonitorReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REMOVED"/>
+                <data android:scheme="package"/>
+            </intent-filter>
+            <!-- 可选filter -->
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.USER_PRESENT" />
+            </intent-filter>
+        </receiver>
 
     </application>
 

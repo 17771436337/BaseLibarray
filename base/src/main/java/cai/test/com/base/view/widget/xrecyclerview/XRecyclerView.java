@@ -359,31 +359,40 @@ public class XRecyclerView extends RecyclerView {
         }
     }
 
+    /**空视图的判断处理*/
+    private void checkIfEmpty(){
+        if (mWrapAdapter != null) {
+            mWrapAdapter.notifyDataSetChanged();
+        }
+        if (mWrapAdapter != null && mEmptyView != null) {
+            int emptyCount = 1 + mWrapAdapter.getHeadersCount();
+            if (loadingMoreEnabled) {
+                emptyCount++;
+            }
+            if (mWrapAdapter.getItemCount() == emptyCount) {
+                mEmptyView.setVisibility(View.VISIBLE);
+                XRecyclerView.this.setVisibility(View.GONE);
+            } else {
+
+                mEmptyView.setVisibility(View.GONE);
+                XRecyclerView.this.setVisibility(View.VISIBLE);
+            }
+        }
+
+    }
     private class DataObserver extends AdapterDataObserver {
         @Override
         public void onChanged() {
-            if (mWrapAdapter != null) {
-                mWrapAdapter.notifyDataSetChanged();
-            }
-            if (mWrapAdapter != null && mEmptyView != null) {
-                int emptyCount = 1 + mWrapAdapter.getHeadersCount();
-                if (loadingMoreEnabled) {
-                    emptyCount++;
-                }
-                if (mWrapAdapter.getItemCount() == emptyCount) {
-                    mEmptyView.setVisibility(View.VISIBLE);
-                    XRecyclerView.this.setVisibility(View.GONE);
-                } else {
-
-                    mEmptyView.setVisibility(View.GONE);
-                    XRecyclerView.this.setVisibility(View.VISIBLE);
-                }
-            }
+            checkIfEmpty();
         }
+
+
+
 
         @Override
         public void onItemRangeInserted(int positionStart, int itemCount) {
             mWrapAdapter.notifyItemRangeInserted(positionStart, itemCount);
+
         }
 
         @Override
@@ -399,6 +408,7 @@ public class XRecyclerView extends RecyclerView {
         @Override
         public void onItemRangeRemoved(int positionStart, int itemCount) {
             mWrapAdapter.notifyItemRangeRemoved(positionStart, itemCount);
+
         }
 
         @Override
